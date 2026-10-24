@@ -1,0 +1,312 @@
+Q44- Push the landing-page HTML skeleton and base desktop styles.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q44 - Landing Page Skeleton + Base Desktop Styles - Shubhi Singh</title>
+    <style>
+        /* ===================================================
+           Q44 - BASE DESKTOP STYLES ONLY
+           No media queries here - This is desktop-first base
+           Mobile responsive will be added in Q45
+        =================================================== */
+
+        /* RESET */
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            font-family: Segoe UI, Arial, sans-serif;
+            background:#ffffff;
+            color:#222;
+            line-height:1.6;
+            /* Desktop base width */
+            min-width:1024px; /* Base desktop minimum */
+        }
+
+        /* SKELETON STRUCTURE */
+        .page{
+            width:100%;
+            max-width:1440px;
+            margin:0 auto;
+            border:2px dashed #d0c0ff; /* Visual skeleton guide */
+            position:relative;
+        }
+        .page::before{
+            content:"Q44 - DESKTOP BASE SKELETON (1440px max) - No responsive yet";
+            position:absolute; top:-12px; left:20px;
+            background:#4a00e0; color:white; padding:4px 12px; border-radius:20px;
+            font-size:11px; font-weight:bold; z-index:10;
+        }
+
+        /* 1. HEADER - DESKTOP BASE */
+        header{
+            width:100%;
+            height:80px;
+            background:white;
+            border-bottom:1px solid #eee;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 60px; /* Desktop padding */
+        }
+        .logo{
+            font-size:20px; font-weight:bold; color:#4a00e0;
+            display:flex; align-items:center; gap:10px;
+        }
+        .logo-box{
+            width:38px; height:38px; background:#4a00e0; color:white;
+            display:flex; align-items:center; justify-content:center; border-radius:8px;
+        }
+        nav{
+            display:flex; gap:30px; list-style:none;
+        }
+        nav a{
+            text-decoration:none; color:#333; font-size:15px; font-weight:500;
+        }
+        .cta-btn{
+            background:#111; color:white; padding:10px 22px; border-radius:30px;
+            text-decoration:none; font-size:14px; font-weight:bold;
+        }
+
+        /* 2. HERO - DESKTOP BASE - 2 COLUMNS */
+        .hero{
+            width:100%;
+            min-height:600px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:80px 60px;
+            background: linear-gradient(135deg, #f5f3ff, #ffffff);
+            gap:40px;
+        }
+        .hero-content{
+            flex:1;
+            max-width:600px;
+        }
+        .hero-content h1{
+            font-size:56px; /* Desktop big heading */
+            line-height:1.1;
+            color:#111;
+            margin-bottom:20px;
+        }
+        .hero-content h1 span{color:#4a00e0;}
+        .hero-content p{
+            font-size:18px;
+            color:#666;
+            margin-bottom:30px;
+        }
+        .hero-buttons{
+            display:flex; gap:15px;
+        }
+        .btn{
+            padding:14px 28px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:15px;
+        }
+        .btn-primary{background:#4a00e0; color:white;}
+        .btn-secondary{background:white; border:1.5px solid #ddd; color:#333;}
+
+        .hero-image{
+            flex:1;
+            max-width:560px;
+            height:450px;
+            background:#ede7ff;
+            border-radius:20px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#4a00e0;
+            font-weight:bold;
+            border:2px dashed #4a00e0;
+        }
+
+        /* 3. FEATURES - DESKTOP BASE - 3 COLUMNS */
+        .features{
+            width:100%;
+            padding:80px 60px;
+            background:white;
+        }
+        .section-title{
+            text-align:center; margin-bottom:50px;
+        }
+        .section-title h2{font-size:40px; color:#111;}
+        .section-title p{font-size:16px; color:#666; margin-top:10px;}
+
+        .features-grid{
+            display:flex; /* Desktop 3 columns */
+            justify-content:space-between;
+            gap:30px;
+        }
+        .feature-card{
+            flex:1;
+            background:#f9f5ff;
+            padding:30px;
+            border-radius:16px;
+            border:1px solid #ede7ff;
+        }
+        .feature-card h3{font-size:18px; margin:12px 0 8px;}
+        .feature-card p{font-size:14px; color:#666;}
+
+        /* 4. PRODUCTS - DESKTOP BASE - 4 COLUMNS */
+        .products{
+            width:100%;
+            padding:80px 60px;
+            background:#f0f2ff;
+        }
+        .products-grid{
+            display:flex;
+            gap:20px;
+        }
+        .product-card{
+            flex:1;
+            background:white;
+            border-radius:16px;
+            overflow:hidden;
+            box-shadow:0 6px 20px rgba(0,0,0,0.06);
+        }
+        .product-img{
+            height:180px; background:#e0e0e0; display:flex; align-items:center; justify-content:center;
+        }
+        .product-info{padding:18px;}
+
+        /* 5. FOOTER - DESKTOP BASE - 4 COLUMNS */
+        footer{
+            width:100%;
+            background:#111;
+            color:#aaa;
+            padding:60px;
+            display:flex;
+            justify-content:space-between;
+            gap:40px;
+        }
+        .footer-col{flex:1;}
+        .footer-col h4{color:white; margin-bottom:15px;}
+
+        /* SKELETON LABELS */
+        .label{
+            display:inline-block; background:#ffeb3b; color:#111; padding:2px 8px;
+            border-radius:4px; font-size:10px; font-weight:bold; margin-bottom:8px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SKELETON START -->
+<div class="page">
+
+    <!-- 1. HEADER SKELETON -->
+    <header>
+        <div class="logo"><div class="logo-box">SS</div> Shubhi Singh - Q44 Skeleton</div>
+        <nav>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+        </nav>
+        <a href="#" class="cta-btn">Contact - Desktop Base</a>
+    </header>
+
+    <!-- 2. HERO SKELETON - DESKTOP 2 COLUMNS -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="label">HERO - DESKTOP: flex row, 56px heading, 60px padding</span>
+            <h1>Base Desktop <span>Styles Only</span> - Q44</h1>
+            <p>This is the landing-page HTML skeleton with base desktop styles. No media queries. Fixed desktop widths: header 80px height, hero 600px min, 56px heading, 60px side padding. Will add responsiveness in Q45.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Primary Button - 14px 28px</a>
+                <a href="#" class="btn btn-secondary">Secondary Button</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            HERO IMAGE - 560px x 450px - Desktop Fixed
+            <br>Python Image Area
+        </div>
+    </section>
+
+    <!-- 3. FEATURES SKELETON - DESKTOP 3 COLUMNS -->
+    <section class="features">
+        <div class="section-title">
+            <span class="label">FEATURES - DESKTOP: 3 columns flex, 40px heading</span>
+            <h2>Features Section - Desktop Base</h2>
+            <p>80px vertical padding, 60px horizontal padding, 3 columns</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="label">CARD 1</span>
+                <h3>Feature One - Desktop Card</h3>
+                <p>Padding 30px, flex:1, background #f9f5ff. Desktop only.</p>
+            </div>
+            <div class="feature-card">
+                <span class="label">CARD 2</span>
+                <h3>Feature Two - Desktop Card</h3>
+                <p>3 columns in a row using display:flex, gap 30px.</p>
+            </div>
+            <div class="feature-card">
+                <span class="label">CARD 3</span>
+                <h3>Feature Three - Desktop Card</h3>
+                <p>No wrapping, no media queries - pure desktop base.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PRODUCTS SKELETON - DESKTOP 4 COLUMNS -->
+    <section class="products">
+        <div class="section-title">
+            <span class="label">PRODUCTS - DESKTOP: 4 columns flex</span>
+            <h2>Products - Desktop 4 Columns</h2>
+            <p>Flex row with 4 cards, no wrap</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card"><div class="product-img">Product 1 - 180px</div><div class="product-info"><h4>Q36 Gallery</h4><p>Desktop card</p></div></div>
+            <div class="product-card"><div class="product-img">Product 2 - 180px</div><div class="product-info"><h4>Q37 Reflow</h4><p>Desktop card</p></div></div>
+            <div class="product-card"><div class="product-img">Product 3 - 180px</div><div class="product-info"><h4>Q38 Dashboard</h4><p>Desktop card</p></div></div>
+            <div class="product-card"><div class="product-img">Product 4 - 180px</div><div class="product-info"><h4>Q39 Final</h4><p>Desktop card</p></div></div>
+        </div>
+    </section>
+
+    <!-- 5. FOOTER SKELETON -->
+    <footer>
+        <div class="footer-col"><h4>Shubhi Singh</h4><p style="font-size:13px;">BCA AI, Invertis University. This is Q44 skeleton - base desktop styles pushed.</p></div>
+        <div class="footer-col"><h4>Desktop Specs</h4><p style="font-size:12px;">Min-width:1024px<br>Max-width:1440px<br>Padding:60px<br>Heading:56px/40px<br>Flex rows no wrap</p></div>
+        <div class="footer-col"><h4>Next Q45</h4><p style="font-size:12px;">Add media queries<br>768px + 480px<br>Responsive<br>Mobile first fixes</p></div>
+        <div class="footer-col"><h4>Git Push</h4><p style="font-size:12px;">git add assignment44.html<br>git commit -m "Q44 - base desktop skeleton"<br>git push</p></div>
+    </footer>
+
+</div>
+<!-- SKELETON END -->
+
+<!-- PUSH INSTRUCTIONS -->
+<div style="max-width:1440px; margin:20px auto; background:white; padding:20px; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+    <h3 style="color:#4a00e0; font-size:15px; border-left:5px solid #4a00e0; padding-left:10px;">Q44 - What to Push + Git Commands</h3>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:12px;">
+        <div style="background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:11px; line-height:1.7;">
+<strong style="color:white;">This file is BASE DESKTOP ONLY:</strong><br>
+- HTML Skeleton: header, hero, features, products, footer<br>
+- Base Styles: desktop widths, 56px heading, 60px padding<br>
+- No @media queries (will add in Q45)<br>
+- min-width:1024px for desktop base<br>
+- max-width:1440px container<br>
+- Flex rows without wrap (desktop)<br>
+<br>
+<strong style="color:white;">Git Push Commands:</strong><br>
+git add assignment44.html<br>
+git commit -m "Q44 - Push landing-page HTML skeleton and base desktop styles - Shubhi Singh"<br>
+git push origin main
+        </div>
+        <div style="background:#f5f0ff; padding:12px; border-radius:8px; font-size:11px; line-height:1.7;">
+            <b>Q44 Requirement Explained:</b><br>
+            1. Create landing-page HTML skeleton = Done (header, hero, features, products, footer)<br>
+            2. Add base desktop styles = Done (80px header, 56px hero h1, 60px paddings, 600px hero, 3-col features, 4-col products)<br>
+            3. Push = Git commands given<br><br>
+            <b>Desktop Specs in this file:</b><br>
+            - Container: 1440px max, 1024px min<br>
+            - Header: 80px height, 60px padding-x<br>
+            - Hero: 80px 60px padding, 56px h1, 600px min-height<br>
+            - Features: 80px 60px padding, 40px h2, 3 columns flex<br>
+            - Products: 80px 60px padding, 4 columns flex<br>
+            - Footer: 60px padding, 4 columns flex<br>
+            - No responsive yet - pure desktop base
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+Q14-Improve an earlier assignment page using correct semantic tags.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q14 - Improved Semantic Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f0f2ff; line-height: 1.6; }
+        header { background: #4a00e0; color: white; text-align: center; padding: 25px; }
+        nav { background: #2d00a0; text-align: center; padding: 10px; position: sticky; top: 0; }
+        nav a { color: white; margin: 0 12px; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        main { max-width: 850px; margin: 20px auto; padding: 0 15px; display: grid; gap: 20px; }
+        section { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        section h2 { color: #4a00e0; border-left: 5px solid #4a00e0; padding-left: 10px; }
+        article { background: #f8f9ff; padding: 12px; border-radius: 8px; margin-top: 10px; }
+        .improved { background: #e8f5e9; border-left: 5px solid #2e7d32; }
+        .why { background: #fff3e0; border-left: 5px solid #ff9800; }
+        footer { background: #1a1a1a; color: white; text-align: center; padding: 15px; margin-top: 20px; }
+        address { font-style: normal; line-height: 1.8; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Q14 - Improve Earlier Page with Semantic Tags</h1>
+        <p>Student: Shubhi Singh | BCA AI | Invertis University, Bareilly</p>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#course">My Course</a>
+        <a href="#improved">What I Improved</a>
+        <a href="#why">Why Semantic</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <!-- 1. About Me -->
+        <section id="about">
+            <h2>About Me</h2>
+            <article>
+                <p>Hello! I am <strong>Shubhi Singh</strong>, a BCA student specializing in <strong>Artificial Intelligence</strong> at <strong>Invertis University, Bareilly, UP</strong>. I love Web Development and AI technologies.</p>
+                <figure>
+                    <img src="https://via.placeholder.com/120" alt="Student profile photo of BCA AI student" style="border-radius: 50%;">
+                    <figcaption>My Profile Photo - with alt attribute</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- 2. My Course BCA -->
+        <section id="course">
+            <h2>My Course - BCA</h2>
+            <article>
+                <p><b>Course:</b> BCA - Bachelor of Computer Applications (AI)</p>
+                <p><b>University:</b> Invertis University, Bareilly</p>
+                <p><b>Duration:</b> 3 Years (6 Semesters)</p>
+                <ul>
+                    <li>Python Programming</li>
+                    <li>Artificial Intelligence & Machine Learning</li>
+                    <li>Web Development (HTML, CSS, JS)</li>
+                    <li>Data Structures & DBMS</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- 3. What I Improved -->
+        <section id="improved" class="improved">
+            <h2>What I Improved (Q10 to Q14)</h2>
+            <article>
+                <p><b>Earlier (Q10) was non-semantic:</b> Used only <code>&lt;div&gt;</code> tags for everything.</p>
+                <p><b>Now (Q14) Improved with semantic tags:</b></p>
+                <ul>
+                    <li><code>&lt;div id="header"&gt;</code> → <code>&lt;header&gt;</code></li>
+                    <li><code>&lt;div class="nav"&gt;</code> → <code>&lt;nav&gt;</code></li>
+                    <li><code>&lt;div class="content"&gt;</code> → <code>&lt;main&gt; + &lt;section&gt; + &lt;article&gt;</code></li>
+                    <li><code>&lt;div class="footer"&gt;</code> → <code>&lt;footer&gt;</code></li>
+                    <li>Added <code>&lt;figure&gt;, &lt;figcaption&gt;, &lt;address&gt;</code></li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- 4. Why Semantic Tags -->
+        <section id="why" class="why">
+            <h2>Why Semantic Tags?</h2>
+            <article>
+                <ol>
+                    <li><b>Meaningful:</b> Tag name tells purpose - header, nav, footer are self-explanatory.</li>
+                    <li><b>SEO Friendly:</b> Google ranks semantic pages higher.</li>
+                    <li><b>Accessibility:</b> Screen readers help blind users to navigate easily.</li>
+                    <li><b>Clean Code:</b> Developers can read and maintain code easily.</li>
+                    <li><b>Future Proof:</b> Modern HTML5 standard uses semantic tags.</li>
+                </ol>
+                <aside>
+                    <p><strong>Note:</strong> Non-semantic tags like <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> have no meaning. Semantic tags like <code>&lt;header&gt;</code> <code>&lt;section&gt;</code> have clear meaning.</p>
+                </aside>
+            </article>
+        </section>
+
+        <!-- 5. Contact -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <address>
+                <b>Name:</b> Shubhi Singh<br>
+                <b>Email:</b> shubhisingh@example.com<br>
+                <b>GitHub:</b> <a href="https://github.com/shubhisinghhh18-prog/assignment-1" target="_blank">github.com/shubhisinghhh18-prog</a><br>
+                <b>College:</b> Invertis University, Bareilly-Lucknow Highway, Bareilly, UP<br>
+                <b>Course:</b> BCA in Artificial Intelligence
+            </address>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Shubhi Singh | Assignment 14 - Semantic HTML | BCA AI</p>
+    </footer>
+
+</body>
+</html>

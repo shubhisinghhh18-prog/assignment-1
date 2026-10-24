@@ -1,0 +1,242 @@
+Q38- Recreate a simple dashboard layout using named grid areas.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q38 - Dashboard with Named Grid Areas - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff; min-height:100vh;}
+
+        /* DASHBOARD CONTAINER - NAMED GRID AREAS - MAIN REQUIREMENT */
+        .dashboard{
+            display:grid; /* grid */
+            /* NAMED AREAS */
+            grid-template-areas:
+                "header header header"
+                "sidebar main main"
+                "sidebar stats stats"
+                "footer footer footer";
+            grid-template-columns: 240px 1fr 1fr;
+            grid-template-rows: 70px 1fr auto 60px;
+            gap:15px;
+            min-height:100vh;
+            padding:15px;
+            max-width:1400px;
+            margin:0 auto;
+        }
+
+        /* ASSIGN AREAS */
+        .header{grid-area: header;}
+        .sidebar{grid-area: sidebar;}
+        .main{grid-area: main;}
+        .stats{grid-area: stats;}
+        .footer{grid-area: footer;}
+
+        /* STYLES */
+        .header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white;
+            border-radius:14px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+        }
+        .logo{display:flex; align-items:center; gap:10px; font-weight:bold; font-size:18px;}
+        .logo span{background:white; color:#4a00e0; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:8px;}
+        .header-right{display:flex; gap:15px; align-items:center; font-size:13px;}
+        .avatar{width:36px; height:36px; border-radius:50%; background:white; color:#4a00e0; display:flex; align-items:center; justify-content:center; font-weight:bold;}
+
+        .sidebar{
+            background:white;
+            border-radius:14px;
+            padding:20px 15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.06);
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+        }
+        .sidebar h3{font-size:12px; color:#888; text-transform:uppercase; letter-spacing:1px; margin:10px 0 8px 10px;}
+        .menu-item{
+            display:flex; align-items:center; gap:10px;
+            padding:10px 12px; border-radius:10px; text-decoration:none; color:#444; font-size:13px; font-weight:500; transition:0.2s;
+        }
+        .menu-item:hover, .menu-item.active{background:#ede7ff; color:#4a00e0;}
+        .badge{margin-left:auto; background:#4a00e0; color:white; padding:2px 8px; border-radius:10px; font-size:10px;}
+
+        .main{
+            background:white;
+            border-radius:14px;
+            padding:22px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.06);
+        }
+        .main h2{color:#222; margin-bottom:15px;}
+        .cards{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap:15px;
+        }
+        .mini-card{
+            background: linear-gradient(135deg, #f5f0ff, #ede7ff);
+            padding:16px; border-radius:12px; border-left:4px solid #4a00e0;
+        }
+        .mini-card b{font-size:22px; color:#4a00e0; display:block;}
+        .mini-card span{font-size:12px; color:#666;}
+        .chart{
+            margin-top:20px; height:180px; background: linear-gradient(135deg, #f9f5ff, #fff);
+            border:1px dashed #d0c0ff; border-radius:12px;
+            display:flex; align-items:center; justify-content:center; color:#888; font-size:13px;
+        }
+
+        .stats{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap:15px;
+        }
+        .stat-box{
+            background:white; border-radius:14px; padding:18px; box-shadow:0 4px 15px rgba(0,0,0,0.06);
+            display:flex; justify-content:space-between; align-items:center;
+        }
+        .stat-box .left h4{font-size:13px; color:#666;} .stat-box .left b{font-size:20px; color:#222;}
+        .icon-box{width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;}
+
+        .footer{
+            background:#111; color:#aaa; border-radius:14px;
+            display:flex; justify-content:space-between; align-items:center; padding:0 20px; font-size:12px;
+        }
+        .footer a{color:#fff; text-decoration:none;}
+
+        /* CODE EXPLAIN */
+        .code-box{
+            max-width:1400px; margin:0 auto; padding:0 15px 20px;
+        }
+        .code-card{background:white; padding:18px; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+        .code-card h3{color:#4a00e0; font-size:16px; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:12px; line-height:1.7;}
+
+        /* RESPONSIVE - REDEFINE AREAS */
+        @media(max-width:900px){
+            .dashboard{
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "stats"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px auto auto auto 60px;
+            }
+            .sidebar{flex-direction:row; flex-wrap:wrap;}
+        }
+        @media(max-width:600px){
+            .header-right span{display:none;}
+            .cards{grid-template-columns:1fr 1fr;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- HEADER AREA -->
+    <div class="header">
+        <div class="logo"><span>SS</span> Shubhi Singh - BCA AI Dashboard</div>
+        <div class="header-right">
+            <span>Q38 - Named Grid Areas</span>
+            <div class="avatar">SS</div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR AREA -->
+    <div class="sidebar">
+        <h3>Main Menu</h3>
+        <a href="#" class="menu-item active">🏠 Dashboard <span class="badge">Q38</span></a>
+        <a href="#" class="menu-item">📚 Assignments <span class="badge">37</span></a>
+        <a href="#" class="menu-item">🐍 Python Projects</a>
+        <a href="#" class="menu-item">🎨 CSS Grid</a>
+        <a href="#" class="menu-item">🖼️ Photo Gallery</a>
+
+        <h3>Flexbox Series</h3>
+        <a href="#" class="menu-item">🧭 Q31 Navbar</a>
+        <a href="#" class="menu-item">🎯 Q32 Login Center</a>
+        <a href="#" class="menu-item">🛍️ Q33 Product Grid</a>
+        <a href="#" class="menu-item">🚀 Q34 Hero + Nav</a>
+        <a href="#" class="menu-item">🌟 Q35 Landing</a>
+
+        <h3>Account</h3>
+        <a href="#" class="menu-item">⚙️ Settings</a>
+        <a href="#" class="menu-item">🚪 Logout</a>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="main">
+        <h2>Welcome, Shubhi! 👋 Dashboard Overview</h2>
+        <div class="cards">
+            <div class="mini-card"><b>37</b><span>Assignments Done</span></div>
+            <div class="mini-card" style="border-left-color:#2e7d32;"><b style="color:#2e7d32;">Q38</b><span>Current - Named Areas</span></div>
+            <div class="mini-card" style="border-left-color:#ff9800;"><b style="color:#ff9800;">8.5</b><span>CGPA</span></div>
+            <div class="mini-card" style="border-left-color:#111;"><b style="color:#111;">100%</b><span>Grid & Flex</span></div>
+        </div>
+        <div class="chart">
+            📊 Chart Area - Main Content (grid-area: main) - You can put assignments here
+        </div>
+    </div>
+
+    <!-- STATS AREA -->
+    <div class="stats">
+        <div class="stat-box">
+            <div class="left"><h4>Q36 Photo Gallery</h4><b>Completed ✅</b></div>
+            <div class="icon-box" style="background:#ede7ff; color:#4a00e0;">🖼️</div>
+        </div>
+        <div class="stat-box">
+            <div class="left"><h4>Q37 Product Grid</h4><b>Auto Reflow ✅</b></div>
+            <div class="icon-box" style="background:#e0f2f1; color:#2e7d32;">🛍️</div>
+        </div>
+        <div class="stat-box">
+            <div class="left"><h4>GitHub Repo</h4><b>assignment-1</b></div>
+            <div class="icon-box" style="background:#fff3e0; color:#ff9800;">🔗</div>
+        </div>
+    </div>
+
+    <!-- FOOTER AREA -->
+    <div class="footer">
+        <div>© 2026 Shubhi Singh | Invertis University | Q38 Dashboard</div>
+        <div><a href="https://github.com/shubhisinghhh18-prog/assignment-1" target="_blank">github.com/shubhisinghhh18-prog</a></div>
+    </div>
+
+</div>
+
+<div class="code-box">
+    <div class="code-card">
+        <h3>Q38 Named Grid Areas Logic</h3>
+        <div class="code">
+.dashboard {<br>
+&nbsp;&nbsp;display:grid;<br>
+&nbsp;&nbsp;grid-template-areas:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"header header header"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"sidebar main main"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"sidebar stats stats"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"footer footer footer";<br>
+&nbsp;&nbsp;grid-template-columns: 240px 1fr 1fr;<br>
+&nbsp;&nbsp;grid-template-rows: 70px 1fr auto 60px;<br>
+&nbsp;&nbsp;gap:15px;<br>
+}<br><br>
+.header { grid-area: header; }<br>
+.sidebar { grid-area: sidebar; }<br>
+.main { grid-area: main; }<br>
+.stats { grid-area: stats; }<br>
+.footer { grid-area: footer; }<br><br>
+/* Mobile pe areas redefine */<br>
+@media(max-width:900px){<br>
+&nbsp;&nbsp;.dashboard { grid-template-areas: "header" "sidebar" "main" "stats" "footer"; grid-template-columns:1fr; }<br>
+}
+        </div>
+        <p style="margin-top:10px; font-size:13px; color:#555;">Isme naam se area define kiya hai - header, sidebar, main, stats, footer. Mobile pe same naam ko single column me stack kar diya. Yehi named grid areas ka power hai.</p>
+    </div>
+</div>
+
+</body>
+</html>

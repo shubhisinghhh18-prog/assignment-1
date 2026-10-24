@@ -1,0 +1,373 @@
+Q43- Recreate a simple reference landing page using both Grid and Flexbox appropriately.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q43 - Grid + Flexbox Landing Page - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        html{scroll-behavior:smooth;}
+        body{background:#f8f9ff; overflow-x:hidden;}
+        
+        /* ============================================
+           GRID vs FLEXBOX - USAGE GUIDE
+           GRID used for: Overall page layout (2D)
+           FLEXBOX used for: Components inside (1D)
+        ============================================= */
+
+        /* OUTER LAYOUT - GRID - 2D LAYOUT */
+        .page{
+            display:grid; /* GRID - Page Structure */
+            grid-template-areas:
+                "header"
+                "hero"
+                "features"
+                "products"
+                "about"
+                "footer";
+            grid-template-columns: 1fr;
+            gap:0;
+            max-width:1300px;
+            margin:0 auto;
+        }
+        .header{grid-area: header;}
+        .hero{grid-area: hero;}
+        .features{grid-area: features;}
+        .products{grid-area: products;}
+        .about{grid-area: about;}
+        .footer{grid-area: footer;}
+
+        /* HEADER - FLEXBOX - 1D ROW */
+        .header{
+            display:flex; /* FLEX - Navbar is 1D row */
+            justify-content:space-between;
+            align-items:center;
+            padding:14px 5%;
+            background:rgba(255,255,255,0.95);
+            backdrop-filter:blur(12px);
+            position:sticky; top:0; z-index:20;
+            box-shadow:0 2px 15px rgba(0,0,0,0.06);
+        }
+        .logo{display:flex; align-items:center; gap:10px; font-weight:bold; font-size:18px; color:#4a00e0;}
+        .logo span{width:34px; height:34px; background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; display:flex; align-items:center; justify-content:center; border-radius:9px;}
+        .nav{display:flex; gap:18px; list-style:none; align-items:center;} /* FLEX - Menu items in row */
+        .nav a{text-decoration:none; color:#333; font-size:13px; font-weight:500; padding:6px 14px; border-radius:20px; transition:0.2s;}
+        .nav a:hover, .nav a.active{background:#ede7ff; color:#4a00e0;}
+        .btn-nav{background: linear-gradient(90deg, #4a00e0, #8e2de2) !important; color:white !important;}
+
+        /* HERO - GRID INSIDE - 2 columns */
+        .hero{
+            display:grid; /* GRID - Hero 2 columns */
+            grid-template-columns: 1.1fr 0.9fr;
+            gap:30px;
+            align-items:center;
+            padding:60px 5%;
+            background: linear-gradient(135deg, #f5f3ff 0%, #fff 100%);
+        }
+        .hero-text{
+            display:flex; /* FLEX - Stack content vertically */
+            flex-direction:column;
+            gap:16px;
+        }
+        .badge{background:#ede7ff; color:#4a00e0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:bold; width:fit-content;}
+        .hero-text h1{font-size:48px; line-height:1.1; color:#111;}
+        .hero-text h1 span{background: linear-gradient(90deg, #4a00e0, #8e2de2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+        .hero-text p{color:#666; line-height:1.7; font-size:14px; max-width:500px;}
+        .hero-btns{display:flex; gap:12px; flex-wrap:wrap;} /* FLEX - Buttons in row */
+        .btn{padding:12px 24px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:13px; transition:0.3s;}
+        .btn-p{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; box-shadow:0 8px 20px rgba(74,0,224,0.25);}
+        .btn-s{background:white; border:1.5px solid #ddd; color:#333;}
+        .stats{display:flex; gap:30px; flex-wrap:wrap; margin-top:10px;} /* FLEX - Stats row */
+        .stats b{font-size:20px; display:block; color:#111;} .stats span{font-size:11px; color:#888;}
+
+        .hero-img{
+            display:flex; /* FLEX - Center image */
+            justify-content:center; align-items:center;
+            position:relative;
+        }
+        .img-card{
+            position:relative; background:white; border-radius:20px; padding:12px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.12); width:100%; max-width:380px;
+        }
+        .img-card img{width:100%; height:340px; object-fit:cover; border-radius:14px;}
+        .float{position:absolute; background:white; padding:8px 12px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.12); font-size:11px; font-weight:bold;}
+        .f1{top:15%; left:-15px; color:#4a00e0;} .f2{bottom:20%; right:-10px; color:#2e7d32;}
+
+        /* FEATURES - GRID + FLEX COMBINED */
+        .features{
+            padding:50px 5%;
+            background:white;
+        }
+        .section-head{text-align:center; margin-bottom:30px;}
+        .section-head h2{font-size:32px; color:#111;}
+        .section-head p{color:#666; font-size:13px; margin-top:6px;}
+        
+        .feature-grid{
+            display:grid; /* GRID - Features 3 columns - 2D */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap:18px;
+        }
+        .f-card{
+            background:#f9f5ff; padding:22px; border-radius:16px;
+            display:flex; /* FLEX - Card content stacked */
+            flex-direction:column; gap:10px;
+            border:1px solid #ede7ff; transition:0.3s;
+        }
+        .f-card:hover{transform:translateY(-4px); box-shadow:0 10px 25px rgba(0,0,0,0.08); background:white;}
+        .f-icon{width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; background:white; color:#4a00e0; box-shadow:0 4px 10px rgba(0,0,0,0.06);}
+        .f-card h3{font-size:15px; color:#222;} .f-card p{font-size:12px; color:#666; line-height:1.6;}
+        .f-tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;} /* FLEX - Tags row */
+        .tag{background:white; border:1px solid #ddd; padding:3px 8px; border-radius:12px; font-size:10px;}
+
+        /* PRODUCTS - GRID */
+        .products{
+            padding:50px 5%;
+            background:#f0f2ff;
+        }
+        .product-grid{
+            display:grid; /* GRID - Products auto reflow */
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap:16px;
+        }
+        .p-card{
+            background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.06);
+            display:flex; /* FLEX - Card vertical */
+            flex-direction:column;
+            transition:0.3s;
+        }
+        .p-card:hover{transform:translateY(-5px);}
+        .p-img{height:160px; overflow:hidden; position:relative;}
+        .p-img img{width:100%; height:100%; object-fit:cover;}
+        .badge{position:absolute; top:10px; left:10px; background:#ff3b30; color:white; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:bold;}
+        .p-info{
+            padding:14px;
+            display:flex; /* FLEX - Info stacked */
+            flex-direction:column; gap:6px; flex:1;
+        }
+        .p-info h4{font-size:13px; color:#222;}
+        .p-info p{font-size:11px; color:#666; flex:1;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-top:auto;} /* FLEX - Price row */
+        .price{color:#4a00e0; font-weight:bold; font-size:15px;}
+
+        /* ABOUT - GRID 2 COLS */
+        .about{
+            display:grid; /* GRID - About 2 columns */
+            grid-template-columns: 0.9fr 1.1fr;
+            gap:30px;
+            padding:50px 5%;
+            background:white;
+            align-items:center;
+        }
+        .about-img{display:flex; justify-content:center;}
+        .about-img img{width:100%; max-width:360px; height:280px; object-fit:cover; border-radius:16px; box-shadow:0 15px 40px rgba(0,0,0,0.1);}
+        .about-text{display:flex; flex-direction:column; gap:12px;} /* FLEX - Text stack */
+
+        /* FOOTER - FLEX + GRID */
+        .footer{
+            background:#111; color:#aaa; padding:40px 5%;
+            display:grid; /* GRID - Footer columns */
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap:30px;
+        }
+        .footer h4{color:white; font-size:13px; margin-bottom:12px;}
+        .footer-links{display:flex; flex-direction:column; gap:6px;} /* FLEX - Links column */
+        .footer-links a{color:#888; text-decoration:none; font-size:12px;}
+        .footer-links a:hover{color:white;}
+        .social{display:flex; gap:8px; margin-top:10px;} /* FLEX - Social row */
+        .social span{width:32px; height:32px; background:#222; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px;}
+
+        /* EXPLAIN BOX */
+        .explain{
+            max-width:1300px; margin:18px auto; background:white; border-radius:16px; padding:18px; box-shadow:0 6px 20px rgba(0,0,0,0.06);
+            display:grid; grid-template-columns: 1fr 1fr; gap:18px;
+        }
+        @media(max-width:768px){.explain{grid-template-columns:1fr;}}
+
+        /* BREAKPOINTS */
+        @media(max-width:900px){
+            .hero{grid-template-columns:1fr; padding:30px 5%;}
+            .hero-text h1{font-size:32px;}
+            .about{grid-template-columns:1fr;}
+            .footer{grid-template-columns:1fr 1fr;}
+        }
+        @media(max-width:600px){
+            .feature-grid{grid-template-columns:1fr;}
+            .product-grid{grid-template-columns: repeat(2, 1fr);}
+            .footer{grid-template-columns:1fr;}
+            .nav{display:none;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- HEADER - FLEXBOX (1D row: logo left, nav right) -->
+    <header class="header">
+        <div class="logo"><span>SS</span> Shubhi Singh - BCA AI</div>
+        <ul class="nav">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#products">Assignments</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#" class="btn-nav">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- HERO - GRID (2D: left text, right image) + FLEX inside -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="badge">🚀 Q43 - Grid + Flexbox Combined Landing Page</div>
+            <h1>Reference Landing with <span>Grid & Flexbox</span></h1>
+            <p>Hi, I'm Shubhi Singh from Invertis University. This landing page uses <b>GRID for overall layout</b> (page sections, hero columns, feature grid) and <b>FLEXBOX for components</b> (navbar, buttons, stats, tags). Best of both worlds.</p>
+            <div class="hero-btns">
+                <a href="https://github.com/shubhisinghhh18-prog/assignment-1" target="_blank" class="btn btn-p">View GitHub →</a>
+                <a href="#features" class="btn btn-s">How I Used Grid+Flex</a>
+            </div>
+            <div class="stats">
+                <div><b>GRID</b><span>Page Layout (2D)</span></div>
+                <div><b>FLEX</b><span>Components (1D)</span></div>
+                <div><b>Q43</b><span>Reference Page</span></div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <div class="img-card">
+                <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Python Code">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" style="position:absolute; top:15px; right:15px; width:44px; height:44px; background:white; padding:7px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2);" alt="Python">
+                <div class="float f1">🔲 display:grid</div>
+                <div class="float f2">✅ display:flex</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES - GRID for layout, FLEX for cards -->
+    <section class="features" id="features">
+        <div class="section-head">
+            <h2>Grid vs Flexbox - When to Use What?</h2>
+            <p>Q43 Requirement: Use both appropriately - Here's how I did it</p>
+        </div>
+        <div class="feature-grid">
+            <div class="f-card">
+                <div class="f-icon">🔲</div>
+                <h3>GRID Used For: Page Layout</h3>
+                <p>Overall page structure with grid-template-areas. 2D layout - rows AND columns. Perfect for main sections.</p>
+                <div class="f-tags"><span class="tag">page</span><span class="tag">grid-template-areas</span><span class="tag">2D</span></div>
+            </div>
+            <div class="f-card">
+                <div class="f-icon">📐</div>
+                <h3>GRID Used For: Hero Section</h3>
+                <p>Hero with 2 columns - text left, image right. display:grid + grid-template-columns: 1.1fr 0.9fr. Equal height columns.</p>
+                <div class="f-tags"><span class="tag">hero</span><span class="tag">1.1fr 0.9fr</span><span class="tag">2D</span></div>
+            </div>
+            <div class="f-card">
+                <div class="f-icon">🃏</div>
+                <h3>GRID Used For: Features & Products</h3>
+                <p>repeat(auto-fit, minmax(280px,1fr)) for features and repeat(auto-fill, minmax(240px,1fr)) for products. Auto reflow.</p>
+                <div class="f-tags"><span class="tag">auto-fit</span><span class="tag">auto-fill</span><span class="tag">minmax()</span></div>
+            </div>
+            <div class="f-card">
+                <div class="f-icon">🧭</div>
+                <h3>FLEX Used For: Navbar</h3>
+                <p>Navbar is 1D - logo left, menu right. justify-content:space-between + align-items:center. Simple row layout.</p>
+                <div class="f-tags"><span class="tag">navbar</span><span class="tag">space-between</span><span class="tag">1D row</span></div>
+            </div>
+            <div class="f-card">
+                <div class="f-icon">🎯</div>
+                <h3>FLEX Used For: Buttons & Stats</h3>
+                <p>Hero buttons, stats row, tags - all 1D rows. display:flex + gap + flex-wrap. Content flows in one direction.</p>
+                <div class="f-tags"><span class="tag">buttons</span><span class="tag">gap</span><span class="tag">flex-wrap</span></div>
+            </div>
+            <div class="f-card">
+                <div class="f-icon">📄</div>
+                <h3>FLEX Used For: Card Content</h3>
+                <p>Inside each card - flex-direction:column to stack image, title, description, price vertically. 1D column layout.</p>
+                <div class="f-tags"><span class="tag">card</span><span class="tag">column</span><span class="tag">flex:1</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS - GRID layout, FLEX inside cards -->
+    <section class="products" id="products">
+        <div class="section-head">
+            <h2>Earlier Projects Showcase</h2>
+            <p>Product grid using GRID, card internals using FLEX</p>
+        </div>
+        <div class="product-grid">
+            <div class="p-card">
+                <div class="p-img"><span class="badge">GRID</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Q36"></div>
+                <div class="p-info"><h4>Q36 Photo Gallery</h4><p>GRID: auto-fit + minmax. FLEX: overlay centering.</p><div class="price-row"><span class="price">GRID Used</span><span style="font-size:10px; color:#2e7d32;">✅</span></div></div>
+            </div>
+            <div class="p-card">
+                <div class="p-img"><span class="badge" style="background:#4a00e0;">FLEX+GRID</span><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="Q37"></div>
+                <div class="p-info"><h4>Q37 Auto Reflow</h4><p>GRID: auto-fill reflow. FLEX: price row space-between.</p><div class="price-row"><span class="price">BOTH Used</span><span style="font-size:10px; color:#2e7d32;">✅</span></div></div>
+            </div>
+            <div class="p-card">
+                <div class="p-img"><span class="badge" style="background:#2e7d32;">GRID</span><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="Q38"></div>
+                <div class="p-info"><h4>Q38 Named Areas</h4><p>GRID: grid-template-areas. FLEX: sidebar menu items.</p><div class="price-row"><span class="price">GRID Areas</span><span style="font-size:10px; color:#2e7d32;">✅</span></div></div>
+            </div>
+            <div class="p-card">
+                <div class="p-img"><span class="badge" style="background:#111;">Q43</span><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Q43"></div>
+                <div class="p-info"><h4>Q43 Final Reference</h4><p>GRID: page layout. FLEX: components. This page itself.</p><div class="price-row"><span class="price">Q43 Final</span><span style="font-size:10px; color:#2e7d32;">✅</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT - GRID 2 cols, FLEX inside -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600" alt="About">
+        </div>
+        <div class="about-text">
+            <div class="badge">About Q43</div>
+            <h2 style="font-size:28px; color:#111;">Why Both GRID & FLEXBOX?</h2>
+            <p style="color:#666; font-size:13px; line-height:1.7;">GRID is for 2D layouts - when you need to control both rows and columns. Like overall page, hero with 2 columns, gallery with rows and columns.</p>
+            <p style="color:#666; font-size:13px; line-height:1.7;">FLEXBOX is for 1D layouts - when you need to control in one direction. Like navbar (row), buttons (row), card content (column). Much simpler for components.</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                <div style="flex:1 1 200px; background:#f5f0ff; padding:12px; border-radius:10px;"><b style="color:#4a00e0; font-size:13px;">GRID = Page</b><p style="font-size:11px; color:#666; margin-top:4px;">2D, areas, template-columns, gap</p></div>
+                <div style="flex:1 1 200px; background:#e8f5e9; padding:12px; border-radius:10px;"><b style="color:#2e7d32; font-size:13px;">FLEX = Components</b><p style="font-size:11px; color:#666; margin-top:4px;">1D, justify-content, align-items, gap</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER - GRID for columns, FLEX for links -->
+    <footer class="footer">
+        <div>
+            <h4>Shubhi Singh</h4>
+            <p style="font-size:12px; line-height:1.6; color:#777;">BCA AI, Invertis University Bareilly. Q43 Reference Landing Page using both Grid and Flexbox appropriately. Python image integrated as requested.</p>
+            <div class="social"><span>🔗</span><span>🐙</span><span>💼</span><span>📧</span></div>
+        </div>
+        <div class="footer-links"><h4>GRID Used</h4><a>page layout - areas</a><a>hero - 1.1fr 0.9fr</a><a>features - auto-fit</a><a>products - auto-fill</a><a>footer - columns</a></div>
+        <div class="footer-links"><h4>FLEX Used</h4><a>navbar - space-between</a><a>hero text - column</a><a>buttons - row wrap</a><a>cards - column</a><a>price row - row</a></div>
+        <div class="footer-links"><h4>Assignments</h4><a href="#">Q36 Gallery - Grid</a><a href="#">Q37 Reflow - Grid</a><a href="#">Q41 Breakpoints</a><a href="#">Q42 Audit Fix</a><a href="#">Q43 Final - Both</a></div>
+    </footer>
+
+</div>
+
+<div class="explain">
+    <div style="background:white; border-radius:14px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+        <h3 style="color:#4a00e0; font-size:14px; border-left:4px solid #4a00e0; padding-left:8px; margin-bottom:8px;">GRID Usage (2D Layouts)</h3>
+        <div style="background:#1e1e1e; color:#a5d6ff; padding:10px; border-radius:8px; font-family:monospace; font-size:11px; line-height:1.6;">
+.page { display:grid; grid-template-areas: "header" "hero" "features" "products" "footer"; }<br>
+.hero { display:grid; grid-template-columns: 1.1fr 0.9fr; }<br>
+.feature-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }<br>
+.product-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }<br>
+.footer { display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+        </div>
+    </div>
+    <div style="background:white; border-radius:14px; padding:16px; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+        <h3 style="color:#2e7d32; font-size:14px; border-left:4px solid #2e7d32; padding-left:8px; margin-bottom:8px;">FLEXBOX Usage (1D Components)</h3>
+        <div style="background:#1e1e1e; color:#a5d6ff; padding:10px; border-radius:8px; font-family:monospace; font-size:11px; line-height:1.6;">
+.header { display:flex; justify-content:space-between; align-items:center; }<br>
+.nav { display:flex; gap:18px; }<br>
+.hero-text { display:flex; flex-direction:column; gap:16px; }<br>
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }<br>
+.f-card { display:flex; flex-direction:column; gap:10px; }<br>
+.p-info { display:flex; flex-direction:column; flex:1; }<br>
+.price-row { display:flex; justify-content:space-between; }
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

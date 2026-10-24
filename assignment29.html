@@ -1,0 +1,236 @@
+Q29-Style a landing-page hero section using position and z-index.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q29 - Hero Section with Position & Z-Index</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff;}
+
+        /* HERO SECTION - MAIN */
+        .hero{
+            position: relative; /* parent relative for absolute children */
+            width:100%;
+            height:90vh;
+            min-height:500px;
+            overflow:hidden;
+            background:#111;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        /* Layer 1: Background Image - z-index 1 */
+        .hero-bg{
+            position:absolute;
+            top:0; left:0;
+            width:100%; height:100%;
+            z-index:1;
+        }
+        .hero-bg img{
+            width:100%; height:100%;
+            object-fit:cover;
+        }
+
+        /* Layer 2: Dark Overlay - z-index 2 */
+        .hero-overlay{
+            position:absolute;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: linear-gradient(90deg, rgba(74,0,224,0.85) 0%, rgba(142,45,226,0.6) 60%, rgba(0,0,0,0.4) 100%);
+            z-index:2;
+        }
+
+        /* Layer 3: Floating Shapes with position absolute - z-index 3 */
+        .shape{
+            position:absolute;
+            border-radius:50%;
+            background: rgba(255,255,255,0.15);
+            z-index:3;
+        }
+        .shape1{width:120px; height:120px; top:15%; left:10%; animation: float 6s infinite;}
+        .shape2{width:80px; height:80px; bottom:20%; left:25%; animation: float 7s infinite 1s;}
+        .shape3{width:200px; height:200px; top:10%; right:15%; background: rgba(255,255,255,0.08);}
+        @keyframes float{
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-20px)}
+        }
+
+        /* Layer 4: Content - z-index 4 (sabse upar) */
+        .hero-content{
+            position:relative;
+            z-index:4;
+            max-width:1000px;
+            width:90%;
+            display:grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap:30px;
+            align-items:center;
+            color:white;
+        }
+        @media(max-width:768px){
+            .hero-content{grid-template-columns:1fr; text-align:center;}
+        }
+
+        .hero-text h1{
+            font-size:48px;
+            line-height:1.1;
+            margin-bottom:15px;
+        }
+        .hero-text h1 span{
+            background: linear-gradient(90deg, #ffeb3b, #ff9800);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+        .hero-text p{
+            font-size:18px;
+            opacity:0.9;
+            margin-bottom:20px;
+            line-height:1.6;
+        }
+        .btns{display:flex; gap:12px; flex-wrap:wrap;}
+        .btn{
+            padding:12px 24px;
+            border-radius:30px;
+            text-decoration:none;
+            font-weight:bold;
+            display:inline-block;
+            transition:0.3s;
+        }
+        .btn-primary{background:white; color:#4a00e0;}
+        .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,0.3);}
+        .btn-outline{border:2px solid white; color:white;}
+        .btn-outline:hover{background:white; color:#4a00e0;}
+
+        /* Card with position absolute inside relative */
+        .hero-card{
+            position:relative;
+            background: rgba(255,255,255,0.95);
+            color:#333;
+            border-radius:20px;
+            padding:20px;
+            box-shadow:0 15px 40px rgba(0,0,0,0.3);
+            z-index:4;
+        }
+        .hero-card img{
+            width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:12px;
+        }
+        /* Badge with position absolute */
+        .badge{
+            position:absolute;
+            top:-12px;
+            right:-12px;
+            background:#ff3b30;
+            color:white;
+            padding:6px 14px;
+            border-radius:20px;
+            font-size:12px;
+            font-weight:bold;
+            z-index:5; /* badge sabse upar */
+            box-shadow:0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Fixed Navbar - z-index 10 */
+        .navbar{
+            position:fixed;
+            top:0; left:0;
+            width:100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding:12px 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:10; /* navbar sabse upar fixed */
+            box-shadow:0 2px 15px rgba(0,0,0,0.1);
+        }
+        .navbar b{color:#4a00e0;}
+
+        .explain{background:white; max-width:1000px; margin:30px auto; padding:20px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+        .explain h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:12px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:12px; margin:8px 0;}
+        .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-top:12px;}
+        .card{padding:12px; border-radius:10px; border-left:5px solid;}
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Navbar - z-index:10 -->
+    <div class="navbar">
+        <b>Shubhi Singh | BCA AI</b>
+        <span style="font-size:12px; background:#4a00e0; color:white; padding:4px 10px; border-radius:12px;">Q29 - Position & Z-Index</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <!-- z-index:1 Background Image -->
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=1200" alt="Coding Background">
+        </div>
+
+        <!-- z-index:2 Overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- z-index:3 Floating Shapes -->
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+
+        <!-- z-index:4 Content -->
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Build Future with <span>BCA in AI</span></h1>
+                <p>I'm Shubhi Singh from Invertis University, Bareilly. Learning Web Development, AI & Python. This hero section uses position and z-index layering.</p>
+                <div class="btns">
+                    <a href="#" class="btn btn-primary">Explore My Work 🚀</a>
+                    <a href="#" class="btn btn-outline">View GitHub</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="badge">NEW 🔥</div>
+                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="AI Lab">
+                <h3 style="color:#4a00e0;">My Project - Q25</h3>
+                <p style="font-size:13px; color:#666; margin-top:5px;">Multi-page website with styled cards, semantic tags and responsive design.</p>
+                <p style="font-size:11px; margin-top:8px; color:#4a00e0; font-weight:bold;">z-index: badge(5) > card(4) > shapes(3) > overlay(2) > bg(1)</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- EXPLANATION FOR TEACHER -->
+    <div class="explain">
+        <h2>📝 Position & Z-Index Explanation (Teacher ke liye)</h2>
+        <div class="grid">
+            <div class="card" style="background:#f3e5f5; border-color:#4a00e0;">
+                <b>position: relative</b><br>
+                .hero parent hai - iske andar absolute children position honge
+                <div class="code">.hero { position: relative; }</div>
+            </div>
+            <div class="card" style="background:#e3f2fd; border-color:#2196f3;">
+                <b>position: absolute</b><br>
+                bg, overlay, shapes, badge absolute hai - relative parent ke hisab se
+                <div class="code">.hero-bg { position: absolute; top:0; left:0; }</div>
+            </div>
+            <div class="card" style="background:#e8f5e9; border-color:#2e7d32;">
+                <b>position: fixed</b><br>
+                Navbar fixed hai - scroll pe bhi upar rahega
+                <div class="code">.navbar { position: fixed; top:0; z-index:10; }</div>
+            </div>
+            <div class="card" style="background:#fff3e0; border-color:#ff9800;">
+                <b>z-index layering</b><br>
+                1=bg, 2=overlay, 3=shapes, 4=content, 5=badge, 10=navbar
+                <div class="code">z-index decides kaun upar dikhega</div>
+            </div>
+        </div>
+        <p style="margin-top:15px; font-size:13px; line-height:1.7;">
+            <b>Hero Section Logic:</b><br>
+            1. Sabse neeche image (z-index:1) → 2. Uske upar purple gradient overlay (z-index:2) → 3. Uske upar floating white circles (z-index:3) → 4. Uske upar text + card (z-index:4) → 5. Card ke upar badge NEW (z-index:5) → 6. Sabse upar fixed navbar (z-index:10)
+        </p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+Q17-Build a job-application style form using every input type covered.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application - Every Input Type - BCA AI - Shubhi Singh</title>
+</head>
+<body>
+
+<header>
+<h1>Job Application Form - AI Developer</h1>
+<p><strong>For BCA AI Students - Invertis University (2026 Present)</strong><br>
+Shubhi Singh | Madnapur (SPN), UP | 12th 78% UP Board | BCA AI 1st Year</p>
+<hr>
+</header>
+
+<form action="#" method="post" enctype="multipart/form-data">
+
+<fieldset>
+<legend>1. Personal Info - text, email, tel, url, search, password</legend>
+
+<label>Full Name (text):</label><br>
+<input type="text" name="fullname" placeholder="Shubhi Singh" required><br><br>
+
+<label>Search Position (search):</label><br>
+<input type="search" name="searchjob" placeholder="Search: AI Engineer"><br><br>
+
+<label>Portfolio URL (url):</label><br>
+<input type="url" name="portfolio" placeholder="https://github.com/shubhisinghhh18-prog/assignment-1"><br><br>
+
+<label>Email (email):</label><br>
+<input type="email" name="email" placeholder="shubhi@gmail.com" required><br><br>
+
+<label>Phone (tel):</label><br>
+<input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10 digit" required><br><br>
+
+<label>Password (password):</label><br>
+<input type="password" name="pwd" minlength="6" placeholder="Create password" required><br><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+<legend>2. Academic - number, range, color</legend>
+
+<label>12th % (number):</label><br>
+<input type="number" name="percent" min="0" max="100" value="78"><br><br>
+
+<label>Experience Years (number with step):</label><br>
+<input type="number" name="exp" min="0" max="10" step="0.5" value="0"><br><br>
+
+<label>Python Skill (range):</label><br>
+<input type="range" name="skill" min="0" max="100" value="70"> 70%<br><br>
+
+<label>ID Card Color (color):</label><br>
+<input type="color" name="color" value="#0066ff"><br><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+<legend>3. Availability - date, time, month, week, datetime-local</legend>
+
+<label>DOB (date):</label><br>
+<input type="date" name="dob" required><br><br>
+
+<label>Interview Time (time):</label><br>
+<input type="time" name="time"><br><br>
+
+<label>Available Month (month):</label><br>
+<input type="month" name="month"><br><br>
+
+<label>Available Week (week):</label><br>
+<input type="week" name="week"><br><br>
+
+<label>Exact Availability (datetime-local):</label><br>
+<input type="datetime-local" name="datetime"><br><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+<legend>4. Preferences - radio, checkbox, select, datalist, textarea</legend>
+
+<label>Job Type (radio):</label><br>
+<input type="radio" name="jobtype" value="FullTime" checked> Full Time
+<input type="radio" name="jobtype" value="Intern"> Internship
+<input type="radio" name="jobtype" value="Remote"> Remote<br><br>
+
+<label>Course (select):</label><br>
+<select name="course">
+<option>BCA AI</option>
+<option selected>BCA AI - 1st Year 2026 Present</option>
+<option>BCA</option>
+</select><br><br>
+
+<label>Preferred Location (datalist):</label><br>
+<input list="cities" name="location" placeholder="Select city">
+<datalist id="cities">
+<option value="Bareilly">
+<option value="Noida">
+<option value="Bangalore">
+<option value="Madnapur (SPN), UP">
+</datalist><br><br>
+
+<label>Skills (checkbox):</label><br>
+<input type="checkbox" name="skill1" value="HTML" checked> HTML Semantic
+<input type="checkbox" name="skill2" value="Python"> Python
+<input type="checkbox" name="skill3" value="AI"> AI
+<input type="checkbox" name="skill4" value="Git"> GitHub<br><br>
+
+<label>About You (textarea):</label><br>
+<textarea name="about" rows="4" cols="50" placeholder="I am Shubhi Singh from Madnapur SPN UP, BCA AI 1st year at Invertis University, 2026 Present, 78% UP Board..."></textarea><br><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+<legend>5. Uploads & Submit - file, hidden, image, button, submit, reset</legend>
+
+<label>Resume (file):</label><br>
+<input type="file" name="resume" accept=".pdf,.docx" required><br><br>
+
+<label>Photo (file image):</label><br>
+<input type="file" name="photo" accept="image/*"><br><br>
+
+<!-- Hidden -->
+<input type="hidden" name="student_id" value="INV-BCA-AI-SHUBHI-2026">
+<input type="hidden" name="place" value="Madnapur SPN UP">
+<p>Hidden inputs added: student_id & place (invisible)</p>
+
+<label>Declaration:</label><br>
+<input type="checkbox" required> I, Shubhi Singh, declare info true. Place: Madnapur (SPN)<br><br>
+
+<input type="button" value="Preview Form" onclick="alert('Preview: Shubhi Singh - BCA AI - 2026 Present')"><br><br>
+
+<label>Submit via Image (image):</label><br>
+<input type="image" src="https://via.placeholder.com/150x40?text=APPLY+NOW" alt="Submit application button for BCA AI job application form" width="150"><br><br>
+
+<input type="submit" value="Submit Application">
+<input type="reset" value="Reset All">
+</fieldset>
+
+</form>
+
+<footer>
+<hr>
+<p><strong>All 25 Input Types Covered:</strong> text, search, url, email, tel, password, number, range, color, date, time, month, week, datetime-local, file, radio, checkbox, hidden, image, button, submit, reset, textarea, select, datalist</p>
+<p>© 2026 Shubhi Singh | BCA AI 1st Year | Invertis University | Madnapur (SPN), UP</p>
+<p>Repo: https://github.com/shubhisinghhh18-prog/assignment-1.git</p>
+</footer>
+
+</body>
+</html>

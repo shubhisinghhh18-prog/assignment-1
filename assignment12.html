@@ -1,0 +1,51 @@
+Q12-Ensure every image on the portfolio page has a meaningful alt attribute.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Q12 Alt Attributes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        .project { border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 20px; }
+        .project img { width: 100%; max-width: 400px; border-radius: 8px; }
+        h1 { text-align: center; color: #4a00e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Portfolio</h1>
+        <p>Q12 - Every image has a meaningful alt attribute for accessibility</p>
+
+        <div class="project">
+            <h2>Project 1: Personal Website</h2>
+            <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=Portfolio+Website" 
+                 alt="Screenshot of my personal portfolio website homepage showing about me section">
+            <p>A responsive portfolio website built with HTML and CSS.</p>
+        </div>
+
+        <div class="project">
+            <h2>Project 2: E-commerce UI</h2>
+            <img src="https://via.placeholder.com/400x250/ff9800/ffffff?text=Ecommerce+UI" 
+                 alt="E-commerce product listing page design with shopping cart and product cards">
+            <p>Modern e-commerce user interface design.</p>
+        </div>
+
+        <div class="project">
+            <h2>About Me</h2>
+            <img src="https://via.placeholder.com/150/4caf50/ffffff?text=Shubhi" 
+                 alt="Profile photo of Shubhi Singh, web developer and B.Tech student">
+            <p>Hi, I am Shubhi Singh, a web developer from Moradabad.</p>
+        </div>
+
+        <div class="project">
+            <h2>My Skills</h2>
+            <img src="https://via.placeholder.com/400x200/e91e63/ffffff?text=My+Skills" 
+                 alt="Infographic showing skills in HTML, CSS, JavaScript, Git and GitHub">
+            <p>Technologies I work with.</p>
+        </div>
+
+    </div>
+</body>
+</html>

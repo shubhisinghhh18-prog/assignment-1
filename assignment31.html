@@ -1,0 +1,172 @@
+Q31- Create a simple responsive menu bar using display:flex.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q31 - Responsive Menu Bar with Flex</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff;}
+
+        /* MENU BAR - FLEX */
+        .navbar{
+            display:flex; /* Q31 requirement */
+            justify-content:space-between;
+            align-items:center;
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white;
+            padding:12px 5%;
+            position:sticky;
+            top:0;
+            z-index:10;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-weight:bold;
+            font-size:20px;
+        }
+        .logo span{
+            background:white;
+            color:#4a00e0;
+            width:32px; height:32px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:8px;
+        }
+
+        .menu{
+            display:flex; /* flex for menu items */
+            list-style:none;
+            gap:20px;
+            align-items:center;
+        }
+        .menu a{
+            color:white;
+            text-decoration:none;
+            padding:8px 14px;
+            border-radius:20px;
+            transition:0.3s;
+            font-size:14px;
+        }
+        .menu a:hover, .menu a.active{
+            background:rgba(255,255,255,0.2);
+        }
+        .btn-contact{
+            background:white !important;
+            color:#4a00e0 !important;
+            font-weight:bold;
+        }
+
+        /* HAMBURGER - Hidden on desktop */
+        .hamburger{
+            display:none;
+            flex-direction:column;
+            gap:5px;
+            cursor:pointer;
+        }
+        .hamburger span{
+            width:25px; height:3px; background:white; border-radius:3px; display:block; transition:0.3s;
+        }
+
+        /* CHECKBOX HACK FOR MOBILE MENU */
+        #toggle{display:none;}
+        
+        /* RESPONSIVE - MOBILE */
+        @media(max-width:768px){
+            .hamburger{display:flex;}
+            .menu{
+                position:absolute;
+                top:100%;
+                left:0;
+                width:100%;
+                flex-direction:column;
+                background: linear-gradient(90deg, #4a00e0, #8e2de2);
+                padding:0;
+                max-height:0;
+                overflow:hidden;
+                transition:0.4s;
+                gap:0;
+            }
+            .menu li{width:100%; text-align:center;}
+            .menu a{display:block; padding:14px; border-radius:0; border-top:1px solid rgba(255,255,255,0.1);}
+            #toggle:checked ~ .menu{max-height:350px; padding:10px 0;}
+        }
+
+        /* DEMO CONTENT */
+        .content{max-width:1100px; margin:30px auto; padding:20px;}
+        .box{background:white; padding:20px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08); margin-bottom:20px;}
+        .box h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:12px; margin-top:10px;}
+        .flex-demo{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+        .flex-demo div{background:#ede7ff; color:#4a00e0; padding:8px 12px; border-radius:8px; font-size:13px; font-weight:bold;}
+    </style>
+</head>
+<body>
+
+    <!-- Q31 NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>SS</span> Shubhi Singh
+        </div>
+
+        <!-- Hamburger Toggle -->
+        <input type="checkbox" id="toggle">
+        <label for="toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="menu">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Assignments</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#" class="btn-contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="box">
+            <h2>Q31 - Responsive Menu Bar using display:flex</h2>
+            <p style="font-size:14px; line-height:1.7; color:#555;">This navbar uses <code>display:flex</code> for layout. Desktop pe horizontal, mobile pe hamburger click se vertical. No JavaScript used - only checkbox hack.</p>
+            
+            <div class="code">
+.navbar { display:flex; justify-content:space-between; align-items:center; }<br>
+.menu { display:flex; gap:20px; list-style:none; }<br><br>
+/* Mobile */<br>
+@media(max-width:768px){<br>
+&nbsp;&nbsp;.menu { flex-direction:column; position:absolute; top:100%; left:0; width:100%; }<br>
+}
+            </div>
+
+            <div class="flex-demo">
+                <div>display:flex</div>
+                <div>justify-content:space-between</div>
+                <div>align-items:center</div>
+                <div>flex-direction:column (mobile)</div>
+                <div>gap:20px</div>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>How it Works?</h2>
+            <ul style="margin-left:20px; line-height:1.9; font-size:14px;">
+                <li><b>display:flex</b> on navbar - logo left, menu right automatically</li>
+                <li><b>display:flex</b> on menu ul - all li in one row with gap</li>
+                <li><b>justify-content:space-between</b> - logo and menu ke beech full space</li>
+                <li><b>Mobile me:</b> flex-direction:column + checkbox hack for toggle</li>
+                <li>No overflow issue - max-width 100% and box-sizing border-box</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
