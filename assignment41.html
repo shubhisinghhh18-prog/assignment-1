@@ -1,0 +1,302 @@
+Q41- Add at least two breakpoints to an earlier project and test on multiple screen sizes.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q41 - Breakpoints Added - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff;}
+
+        /* BREAKPOINT INDICATOR - FOR TESTING */
+        .breakpoint-indicator{
+            position:fixed; top:80px; right:20px; z-index:100;
+            background:#111; color:white; padding:8px 16px; border-radius:20px;
+            font-size:12px; font-weight:bold; box-shadow:0 4px 15px rgba(0,0,0,0.2);
+        }
+        .breakpoint-indicator::after{content:"🖥️ Desktop ( >1024px )";}
+
+        /* MAIN GRID PROJECT - SAME AS Q40 */
+        .project{
+            display:grid;
+            grid-template-areas:
+                "header header header"
+                "hero hero hero"
+                "gallery gallery gallery"
+                "sidebar products products"
+                "footer footer footer";
+            grid-template-columns: 260px 1fr 1fr;
+            gap:18px;
+            max-width:1400px;
+            margin:0 auto;
+            padding:18px;
+        }
+        .header{grid-area: header;}
+        .hero{grid-area: hero;}
+        .gallery-section{grid-area: gallery;}
+        .sidebar{grid-area: sidebar;}
+        .products-area{grid-area: products;}
+        .footer{grid-area: footer;}
+
+        .header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white; border-radius:16px; padding:0 22px; height:70px;
+            display:flex; justify-content:space-between; align-items:center;
+            box-shadow:0 6px 20px rgba(74,0,224,0.25);
+        }
+        .logo{display:flex; gap:10px; align-items:center; font-weight:bold; font-size:18px;}
+        .logo span{background:white; color:#4a00e0; width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:10px;}
+        .nav{display:flex; gap:8px; list-style:none;}
+        .nav a{color:rgba(255,255,255,0.9); text-decoration:none; font-size:13px; padding:7px 14px; border-radius:20px;}
+        .nav a:hover{background:rgba(255,255,255,0.2);}
+
+        .hero{
+            background:white; border-radius:20px; padding:30px;
+            display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; align-items:center;
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+        }
+        .hero-text{display:flex; flex-direction:column; gap:14px;}
+        .top-badge{background:#ede7ff; color:#4a00e0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:bold; width:fit-content;}
+        .hero-text h1{font-size:44px; line-height:1.1; color:#111;}
+        .hero-text h1 span{background: linear-gradient(90deg, #4a00e0, #8e2de2); -webkit-background-clip:text;background-clip:text; -webkit-text-fill-color:transparent;}
+        .hero-text p{color:#666; line-height:1.6; font-size:14px;}
+        .hero-img{position:relative; background: linear-gradient(135deg, #f5f0ff, #fff); border-radius:18px; padding:12px;}
+        .hero-img img{width:100%; height:320px; object-fit:cover; border-radius:14px;}
+
+        .gallery-section{background:white; border-radius:20px; padding:22px; box-shadow:0 8px 30px rgba(0,0,0,0.06);}
+        .gallery{display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;}
+        .photo{height:140px; border-radius:12px; overflow:hidden;}
+        .photo img{width:100%; height:100%; object-fit:cover;}
+
+        .sidebar{background:white; border-radius:16px; padding:16px; box-shadow:0 6px 20px rgba(0,0,0,0.06);}
+        .products-area .product-grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:14px;}
+        .card{background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.06);}
+        .img-wrap{height:150px;} .img-wrap img{width:100%; height:100%; object-fit:cover;}
+        .info{padding:12px;} .info h4{font-size:13px;}
+
+        .footer{background:#111; color:#aaa; border-radius:16px; padding:20px; display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap:20px;}
+        .footer h4{color:white; font-size:13px; margin-bottom:10px;}
+
+        /* CODE BOX */
+        .breakpoint-info{
+            max-width:1400px; margin:0 auto; padding:0 18px 20px;
+        }
+        .code-box{background:white; border-radius:16px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-bottom:15px;}
+        .code-box h3{color:#4a00e0; font-size:15px; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:11px; line-height:1.7; white-space:pre-wrap;}
+
+        /* ================================================
+           Q41 - BREAKPOINTS ADDED - MAIN REQUIREMENT
+           At least 2 breakpoints + testing on multiple screens
+        ================================================= */
+
+        /* BREAKPOINT 1 - TABLET: 1024px and below */
+        @media (max-width: 1024px) {
+            .breakpoint-indicator::after{content:"💻 Laptop/Tablet Landscape ( 769px - 1024px )";}
+            .breakpoint-indicator{background:#ff9800;}
+            
+            .project{
+                grid-template-areas:
+                    "header header"
+                    "hero hero"
+                    "gallery gallery"
+                    "sidebar products"
+                    "footer footer";
+                grid-template-columns: 220px 1fr;
+                gap:14px;
+                padding:14px;
+            }
+            .hero{grid-template-columns: 1fr 1fr; padding:22px;}
+            .hero-text h1{font-size:34px;}
+            .hero-img img{height:260px;}
+            .gallery{grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));}
+            .products-area .product-grid{grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));}
+            .footer{grid-template-columns: 1fr 1fr; gap:15px;}
+        }
+
+        /* BREAKPOINT 2 - TABLET PORTRAIT: 768px and below */
+        @media (max-width: 768px) {
+            .breakpoint-indicator::after{content:"📱 Tablet Portrait ( 481px - 768px )";}
+            .breakpoint-indicator{background:#4a00e0;}
+            
+            .project{
+                grid-template-areas:
+                    "header"
+                    "hero"
+                    "gallery"
+                    "sidebar"
+                    "products"
+                    "footer";
+                grid-template-columns: 1fr;
+                gap:12px;
+                padding:12px;
+            }
+            .header{height:auto; padding:14px; flex-wrap:wrap; gap:10px;}
+            .nav{display:none;} /* hide nav on tablet portrait, show hamburger later */
+            .hero{grid-template-columns:1fr; padding:18px; gap:18px;}
+            .hero-text h1{font-size:32px;}
+            .hero-img img{height:220px;}
+            .gallery{grid-template-columns: repeat(3, 1fr);}
+            .products-area .product-grid{grid-template-columns: repeat(2, 1fr);}
+            .footer{grid-template-columns:1fr 1fr;}
+        }
+
+        /* BREAKPOINT 3 - MOBILE LARGE: 480px and below */
+        @media (max-width: 480px) {
+            .breakpoint-indicator::after{content:"📱 Mobile Large ( 321px - 480px )";}
+            .breakpoint-indicator{background:#e91e63;}
+            
+            .hero-text h1{font-size:26px;}
+            .gallery{grid-template-columns: repeat(2, 1fr); gap:8px;}
+            .photo{height:110px;}
+            .products-area .product-grid{grid-template-columns: repeat(2, 1fr); gap:8px;}
+            .img-wrap{height:120px;}
+            .footer{grid-template-columns:1fr; text-align:center;}
+        }
+
+        /* BREAKPOINT 4 - MOBILE SMALL: 320px and below */
+        @media (max-width: 320px) {
+            .breakpoint-indicator::after{content:"📱 Mobile Small ( ≤320px )";}
+            .breakpoint-indicator{background:#f44336;}
+            
+            .project{padding:8px; gap:10px;}
+            .hero{padding:14px;}
+            .hero-text h1{font-size:22px;}
+            .gallery{grid-template-columns:1fr;}
+            .products-area .product-grid{grid-template-columns:1fr;}
+            .photo{height:160px;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="breakpoint-indicator"></div>
+
+<div class="project">
+
+    <div class="header">
+        <div class="logo"><span>SS</span> Shubhi Singh - Q41 Breakpoints</div>
+        <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Dashboard</a></li>
+        </ul>
+        <div style="background:#2e7d32; padding:6px 12px; border-radius:20px; font-size:11px; font-weight:bold;">Q41 - 4 Breakpoints</div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <div class="top-badge">📱 Q41 - Breakpoints Added - Tested on Multiple Screens</div>
+            <h1>Responsive with <span>4 Breakpoints</span> - Tested</h1>
+            <p>This is Q40 project with 4 breakpoints added: 1024px (Laptop), 768px (Tablet Portrait), 480px (Mobile Large), 320px (Mobile Small). Resize window to see indicator change top-right. Python image included as requested earlier.</p>
+            <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+                <span style="background:#111; color:white; padding:6px 10px; border-radius:20px; font-size:10px;">🖥️ >1024 Desktop</span>
+                <span style="background:#ff9800; color:white; padding:6px 10px; border-radius:20px; font-size:10px;">💻 769-1024 Laptop</span>
+                <span style="background:#4a00e0; color:white; padding:6px 10px; border-radius:20px; font-size:10px;">📱 481-768 Tablet</span>
+                <span style="background:#e91e63; color:white; padding:6px 10px; border-radius:20px; font-size:10px;">📱 321-480 Mobile L</span>
+                <span style="background:#f44336; color:white; padding:6px 10px; border-radius:20px; font-size:10px;">📱 ≤320 Mobile S</span>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Python">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" style="position:absolute; top:15px; right:15px; width:45px; height:45px; background:white; padding:7px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2);" alt="Python">
+        </div>
+    </div>
+
+    <div class="gallery-section">
+        <div style="display:flex; justify-content:space-between; margin-bottom:12px;"><h2 style="font-size:18px;">Q36 Gallery (Breakpoints Test)</h2><span style="font-size:11px; color:#888;">6 → 3 → 2 → 1 columns</span></div>
+        <div class="gallery">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt=""></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400" alt=""></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h3 style="font-size:11px; color:#888;">Breakpoints Added</h3>
+        <div style="background:#f5f0ff; padding:10px; border-radius:10px; font-size:11px; line-height:1.6;">
+            <b>@media (max-width:1024px)</b> → Laptop<br>
+            <b>@media (max-width:768px)</b> → Tablet P<br>
+            <b>@media (max-width:480px)</b> → Mobile L<br>
+            <b>@media (max-width:320px)</b> → Mobile S<br>
+            <span style="color:#4a00e0;">Top-right indicator shows active breakpoint</span>
+        </div>
+    </div>
+
+    <div class="products-area">
+        <div class="product-grid">
+            <div class="card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt=""></div><div class="info"><h4>Q37 Reflow</h4><p>4→2→1 columns</p></div></div>
+            <div class="card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt=""></div><div class="info"><h4>Q38 Areas</h4><p>Grid areas stack</p></div></div>
+            <div class="card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt=""></div><div class="info"><h4>Q39 Layout</h4><p>Sidebar → top</p></div></div>
+            <div class="card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt=""></div><div class="info"><h4>Q40 Final</h4><p>Tested all sizes</p></div></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><h4>Shubhi Singh</h4><p style="font-size:11px; color:#777;">BCA AI | Q41 Breakpoints added to Q40 project and tested</p></div>
+        <div><h4>Tested On</h4><p style="font-size:11px; color:#777;">Desktop 1920px<br>Laptop 1024px<br>Tablet 768px<br>Mobile 480px & 320px</p></div>
+        <div><h4>Breakpoints</h4><p style="font-size:11px; color:#777;">@media 1024px<br>@media 768px<br>@media 480px<br>@media 320px</p></div>
+        <div><h4>Q41 Status</h4><p style="font-size:11px; color:#2e7d32; font-weight:bold;">✅ 4 Breakpoints Added<br>✅ Tested Multiple Screens<br>✅ Python Image Kept</p></div>
+    </div>
+
+</div>
+
+<div class="breakpoint-info">
+    <div class="code-box">
+        <h3>Q41 - Code Explanation for Teacher - Breakpoints Added</h3>
+        <div class="code">/* BREAKPOINT 1 - Laptop / Tablet Landscape */
+@media (max-width: 1024px) {
+  .project { grid-template-columns: 220px 1fr; }
+  .hero { grid-template-columns: 1fr 1fr; }
+  .hero-text h1 { font-size: 34px; }
+  /* Gallery 6 → 4 cols, Products 4 → 3 cols */
+}
+
+/* BREAKPOINT 2 - Tablet Portrait - MAIN */
+@media (max-width: 768px) {
+  .project {
+    grid-template-areas: "header" "hero" "gallery" "sidebar" "products" "footer";
+    grid-template-columns: 1fr; /* Single column stack */
+  }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* BREAKPOINT 3 - Mobile Large */
+@media (max-width: 480px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-text h1 { font-size: 26px; }
+}
+
+/* BREAKPOINT 4 - Mobile Small */
+@media (max-width: 320px) {
+  .gallery { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+/* TESTING: Fixed indicator top-right shows active breakpoint */
+.breakpoint-indicator::after { content changes per media query }</div>
+        <p style="margin-top:10px; font-size:12px; color:#555;">✅ Requirement: Add at least two breakpoints - I added 4. Tested on Desktop, Laptop, Tablet, Mobile Large, Mobile Small. Indicator top-right changes color + text on each breakpoint so teacher can see testing live.</p>
+    </div>
+
+    <div class="code-box">
+        <h3>How to Test on Multiple Screen Sizes</h3>
+        <div class="code">1. Desktop Test: Open in Chrome > Window full size > Shows "🖥️ Desktop"
+2. Laptop Test: Resize window to 900px width or DevTools > 1024px > Shows "💻 Laptop"
+3. Tablet Test: DevTools > Toggle Device Toolbar > iPad (768px) > Shows "📱 Tablet Portrait" + single column
+4. Mobile Test: DevTools > iPhone SE (375px) or 480px > Shows "📱 Mobile Large" + 2 columns
+5. Small Mobile: DevTools > 320px > Shows "📱 Mobile Small" + 1 column
+
+Chrome DevTools shortcut: F12 → Ctrl+Shift+M → Select devices
+All grids reflow automatically - no horizontal scroll</div>
+    </div>
+</div>
+
+</body>
+</html>

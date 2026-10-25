@@ -1,0 +1,215 @@
+Q23-Restyle the resume page with a proper font pairing and colour palette.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume</title>
+
+    <!-- Font Pairing -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #17365D;
+            --accent-color: #2A9D8F;
+            --background-color: #F3F6FA;
+            --text-color: #333B48;
+            --white-color: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 30px 15px;
+        }
+
+        .resume {
+            max-width: 850px;
+            margin: auto;
+            background-color: var(--white-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 35px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #DCE6F1;
+            font-size: 16px;
+        }
+
+        .contact {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        main {
+            padding: 30px 35px;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        ul {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #E2F4F1;
+            color: #176B62;
+            padding: 5px 12px;
+            border-radius: 5px;
+            margin: 4px;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #EAF0F6;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 25px 15px;
+            }
+
+            header h1 {
+                font-size: 26px;
+            }
+
+            main {
+                padding: 22px 18px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .resume {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="resume">
+
+        <header>
+            <h1>Your Name</h1>
+            <p>Student | Web Development Learner</p>
+            <div class="contact">
+                your.email@example.com | +91 9876543210
+                <br>
+                Your City, India
+            </div>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Profile Summary</h2>
+                <p>
+                    I am a motivated student interested in web development
+                    and programming. I enjoy learning new technologies
+                    and building creative, user-friendly websites.
+                </p>
+            </section>
+
+            <section>
+                <h2>Education</h2>
+                <h3>College / University Name</h3>
+                <p>Degree or Course Name | 2026 – Present</p>
+                <p>Relevant subjects: Computer Science, HTML, CSS and Java.</p>
+            </section>
+
+            <section>
+                <h2>Technical Skills</h2>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Java</span>
+                <span class="tag">VS Code</span>
+                <span class="tag">GitHub</span>
+            </section>
+
+            <section>
+                <h2>Projects</h2>
+                <h3>Personal Portfolio Website</h3>
+                <ul>
+                    <li>Created a web page using HTML and CSS.</li>
+                    <li>Used CSS styling to improve layout and readability.</li>
+                </ul>
+
+                <h3>Java Programming Practice</h3>
+                <ul>
+                    <li>Practised basic Java programs and problem-solving.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Strengths</h2>
+                <ul>
+                    <li>Quick learner</li>
+                    <li>Teamwork and communication</li>
+                    <li>Problem-solving skills</li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer>
+            Thank you for viewing my resume!
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+Q36- Build a simple photo gallery using CSS Grid.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q36 - Photo Gallery using CSS Grid - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff;}
+
+        header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white; text-align:center; padding:20px;
+            position:sticky; top:0; z-index:10;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+        }
+        header h1{font-size:22px;}
+        header p{font-size:13px; opacity:0.9; margin-top:5px;}
+
+        /* CSS GRID GALLERY - MAIN REQUIREMENT */
+        .gallery{
+            max-width:1200px;
+            margin:25px auto;
+            padding:0 20px;
+            display:grid; /* GRID */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive columns */
+            gap:15px; /* gap between photos */
+        }
+
+        .photo{
+            position:relative;
+            height:250px;
+            border-radius:16px;
+            overflow:hidden;
+            box-shadow:0 6px 20px rgba(0,0,0,0.1);
+            transition:0.3s;
+            background:white;
+        }
+        .photo:hover{transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+        .photo img{
+            width:100%; height:100%; object-fit:cover; transition:0.5s;
+        }
+        .photo:hover img{transform:scale(1.1);}
+        .overlay{
+            position:absolute; bottom:0; left:0; width:100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color:white; padding:15px; transform:translateY(100%); transition:0.3s;
+        }
+        .photo:hover .overlay{transform:translateY(0);}
+        .overlay h4{font-size:14px;} .overlay p{font-size:11px; opacity:0.8;}
+
+        /* MASONRY STYLE - 2nd Gallery */
+        .gallery-masonry{
+            max-width:1200px; margin:25px auto; padding:0 20px;
+            display:grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            grid-auto-rows: 200px; /* row height */
+            gap:15px;
+        }
+        .item{
+            border-radius:16px; overflow:hidden; position:relative; box-shadow:0 6px 20px rgba(0,0,0,0.1);
+        }
+        .item img{width:100%; height:100%; object-fit:cover;}
+        .item:nth-child(1){grid-row: span 2;} /* tall */
+        .item:nth-child(4){grid-column: span 2;} /* wide */
+        .item:nth-child(6){grid-row: span 2;}
+
+        @media(max-width:768px){
+            .gallery{grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));}
+            .photo{height:180px;}
+            .gallery-masonry{grid-template-columns: repeat(2, 1fr); grid-auto-rows:150px;}
+            .item:nth-child(4){grid-column: span 1;}
+        }
+        @media(max-width:480px){
+            .gallery{grid-template-columns: repeat(2, 1fr); gap:10px;}
+            .gallery-masonry{grid-template-columns:1fr;}
+            .item:nth-child(1), .item:nth-child(6){grid-row: span 1;}
+        }
+
+        .code-box{
+            max-width:1200px; margin:25px auto; background:white; padding:20px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.06);
+        }
+        .code-box h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px; font-size:18px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:12px; line-height:1.6;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Q36 - Simple Photo Gallery using CSS Grid</h1>
+    <p>Shubhi Singh | BCA AI | Invertis University | display:grid + auto-fit + minmax</p>
+</header>
+
+<!-- GALLERY 1 - SIMPLE GRID -->
+<div class="gallery">
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500" alt="Python Code">
+        <div class="overlay"><h4>Python Coding</h4><p>BCA AI Project</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500" alt="Web Dev">
+        <div class="overlay"><h4>Web Development</h4><p>HTML CSS JS</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=500" alt="Coding">
+        <div class="overlay"><h4>Assignment Work</h4><p>Q31 to Q35 Done</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" alt="Laptop">
+        <div class="overlay"><h4>Laptop Setup</h4><p>Developer Life</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500" alt="Coding Setup">
+        <div class="overlay"><h4>Coding Setup</h4><p>VS Code</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500" alt="Tech">
+        <div class="overlay"><h4>AI Learning</h4><p>BCA AI</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500" alt="Python">
+        <div class="overlay"><h4>Python + AI</h4><p>Future Tech</p></div>
+    </div>
+    <div class="photo">
+        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?w=500" alt="Code">
+        <div class="overlay"><h4>Project Work</h4><p>GitHub</p></div>
+    </div>
+</div>
+
+<div class="code-box">
+    <h2>CSS Grid Logic - Simple Gallery (Q36 Main)</h2>
+    <div class="code">
+.gallery {<br>
+&nbsp;&nbsp;display:grid; /* GRID LAYOUT */<br>
+&nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* auto responsive */<br>
+&nbsp;&nbsp;gap:15px;<br>
+}<br>
+/* auto-fit = jitne columns fit ho sake utne banenge */<br>
+/* minmax(250px, 1fr) = kam se kam 250px, zyada space ho to 1fr le lega */
+    </div>
+</div>
+
+<!-- GALLERY 2 - MASONRY EFFECT WITH GRID SPAN -->
+<div class="code-box" style="background: transparent; box-shadow:none; padding-bottom:0;">
+    <h2>Bonus - Masonry Style Gallery (grid-row span + grid-column span)</h2>
+</div>
+
+<div class="gallery-masonry">
+    <div class="item"><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="1"></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600" alt="2"></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=600" alt="3"></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600" alt="4"></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="5"></div>
+    <div class="item"><img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600" alt="6"></div>
+</div>
+
+<div class="code-box">
+    <h2>Masonry Logic</h2>
+    <div class="code">
+.gallery-masonry {<br>
+&nbsp;&nbsp;display:grid;<br>
+&nbsp;&nbsp;grid-template-columns: repeat(3, 1fr);<br>
+&nbsp;&nbsp;grid-auto-rows:200px;<br>
+&nbsp;&nbsp;gap:15px;<br>
+}<br>
+.item:nth-child(1){ grid-row: span 2; } /* tall image */<br>
+.item:nth-child(4){ grid-column: span 2; } /* wide image */
+    </div>
+    <p style="margin-top:10px; font-size:13px; color:#555;">First gallery simple responsive hai, second wala masonry effect ke liye <code>span</code> use kar raha hai. Dono pure CSS Grid se.</p>
+</div>
+
+</body>
+</html>

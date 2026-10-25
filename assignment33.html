@@ -1,0 +1,195 @@
+Q33- Build a product-listing style layout using flex-wrap.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q33 - Product Listing with flex-wrap</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff; padding:20px;}
+        header{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center; padding:20px; border-radius:12px; max-width:1200px; margin:0 auto 20px;}
+
+        /* MAIN FLEX-WRAP CONTAINER - Q33 REQUIREMENT */
+        .product-listing{
+            max-width:1200px;
+            margin:0 auto;
+            display:flex; /* flex */
+            flex-wrap:wrap; /* wrap - main requirement */
+            gap:20px;
+            justify-content:center; /* center last row */
+        }
+
+        /* EACH PRODUCT CARD */
+        .product-card{
+            /* flex-basis - card ka base width */
+            flex: 1 1 280px; /* grow shrink basis */
+            max-width:350px;
+            min-width:260px;
+            background:white;
+            border-radius:16px;
+            overflow:hidden;
+            box-shadow:0 6px 20px rgba(0,0,0,0.08);
+            transition:0.3s;
+            display:flex;
+            flex-direction:column;
+        }
+        .product-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+
+        .img-wrap{position:relative; height:200px; overflow:hidden;}
+        .img-wrap img{width:100%; height:100%; object-fit:cover; transition:0.4s;}
+        .product-card:hover .img-wrap img{transform:scale(1.08);}
+        .badge{position:absolute; top:10px; left:10px; background:#ff3b30; color:white; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:bold;}
+        .badge.new{background:#2e7d32; left:auto; right:10px;}
+
+        .info{padding:15px; flex:1; display:flex; flex-direction:column;}
+        .info h3{color:#222; font-size:16px; margin-bottom:4px;}
+        .cat{color:#888; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;}
+        .rating{color:#ff9800; font-size:12px; margin-bottom:8px;}
+        .desc{color:#666; font-size:12px; line-height:1.5; margin-bottom:12px; flex:1;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-top:auto;}
+        .price{font-weight:bold; color:#4a00e0; font-size:18px;}
+        .price s{font-size:12px; color:#999; font-weight:normal;}
+        .btn{padding:8px 16px; background:#111; color:white; border:none; border-radius:8px; font-size:12px; font-weight:bold; cursor:pointer;}
+        .btn:hover{background:#4a00e0;}
+
+        /* FILTER BAR - ALSO FLEX */
+        .filter-bar{
+            max-width:1200px; margin:0 auto 20px;
+            display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
+            background:white; padding:15px 20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.06);
+        }
+        .filter-bar .left{display:flex; gap:8px; flex-wrap:wrap;}
+        .chip{padding:6px 14px; background:#ede7ff; color:#4a00e0; border-radius:20px; font-size:12px; font-weight:600; cursor:pointer; border:none;}
+        .chip.active{background:#4a00e0; color:white;}
+
+        .code-box{max-width:1200px; margin:20px auto; background:white; padding:20px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.08);}
+        .code-box h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px; font-size:18px;}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:12px;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Q33 - Product Listing Layout using flex-wrap</h1>
+    <p>Shubhi Singh | BCA AI | flex-wrap se auto wrapping products</p>
+</header>
+
+<div class="filter-bar">
+    <div class="left">
+        <button class="chip active">All Products</button>
+        <button class="chip">Web Dev</button>
+        <button class="chip">AI Projects</button>
+        <button class="chip">Python</button>
+    </div>
+    <div style="font-size:12px; color:#666;">Showing 6 products • display:flex + flex-wrap:wrap</div>
+</div>
+
+<!-- PRODUCT LISTING - FLEX WRAP -->
+<div class="product-listing">
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <span class="badge">30% OFF</span>
+            <span class="badge new">NEW</span>
+            <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Product 1">
+        </div>
+        <div class="info">
+            <div class="cat">BCA Assignment</div>
+            <h3>Q29 Hero Section - Position & Z-Index</h3>
+            <div class="rating">★★★★★ 4.9 (120)</div>
+            <div class="desc">Landing page hero with overlay, floating shapes, absolute positioning.</div>
+            <div class="price-row"><div class="price">₹99 <s>₹199</s></div><button class="btn">Add to Cart</button></div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <span class="badge">BESTSELLER</span>
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="Product 2">
+        </div>
+        <div class="info">
+            <div class="cat">Web Dev</div>
+            <h3>Q30 Profile & Product Card Component</h3>
+            <div class="rating">★★★★★ 5.0 (98)</div>
+            <div class="desc">Finished profile card + product card with hover zoom effect.</div>
+            <div class="price-row"><div class="price">₹149 <s>₹249</s></div><button class="btn">Add to Cart</button></div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="Product 3">
+        </div>
+        <div class="info">
+            <div class="cat">Flexbox</div>
+            <h3>Q31 Responsive Menu with Flex</h3>
+            <div class="rating">★★★★☆ 4.8 (76)</div>
+            <div class="desc">Navbar using display:flex, space-between, hamburger on mobile.</div>
+            <div class="price-row"><div class="price">₹49 <s>₹99</s></div><button class="btn">Add to Cart</button></div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <span class="badge">POPULAR</span>
+            <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400" alt="Product 4">
+        </div>
+        <div class="info">
+            <div class="cat">Flexbox</div>
+            <h3>Q32 Centered Login Form - Flexbox</h3>
+            <div class="rating">★★★★★ 4.9 (210)</div>
+            <div class="desc">Perfectly centred using justify-content + align-items center.</div>
+            <div class="price-row"><div class="price">₹79 <s>₹129</s></div><button class="btn">Add to Cart</button></div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt="Product 5">
+        </div>
+        <div class="info">
+            <div class="cat">Assignment Bundle</div>
+            <h3>Q27 Three Card Variants</h3>
+            <div class="rating">★★★★☆ 4.7 (64)</div>
+            <div class="desc">Three cards with different border-radius and gradient backgrounds.</div>
+            <div class="price-row"><div class="price">₹59 <s>₹99</s></div><button class="btn">Add to Cart</button></div>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="img-wrap">
+            <span class="badge">FREE</span>
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Product 6">
+        </div>
+        <div class="info">
+            <div class="cat">Debugging</div>
+            <h3>Q28 Fix Overflow Breaking Layout</h3>
+            <div class="rating">★★★★★ 5.0 (150)</div>
+            <div class="desc">Fixed image overflow, long URL, box-sizing issues.</div>
+            <div class="price-row"><div class="price">₹0 <s>₹49</s></div><button class="btn">View Free</button></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="code-box">
+    <h2>Q33 Logic - Teacher Explanation</h2>
+    <div class="code">
+.product-listing {<br>
+&nbsp;&nbsp;display:flex; /* flex container */<br>
+&nbsp;&nbsp;flex-wrap:wrap; /* cards next line pe chale jayenge - MAIN */<br>
+&nbsp;&nbsp;gap:20px;<br>
+&nbsp;&nbsp;justify-content:center;<br>
+}<br><br>
+.product-card {<br>
+&nbsp;&nbsp;flex: 1 1 280px; /* grow 1, shrink 1, basis 280px */<br>
+&nbsp;&nbsp;max-width:350px; /* zyada bade nahi honge */<br>
+&nbsp;&nbsp;min-width:260px; /* bahut chote nahi honge */<br>
+}
+    </div>
+    <p style="margin-top:10px; font-size:13px; line-height:1.6;">Desktop pe 3 cards ek row me, tablet pe 2, mobile pe 1 - automatically wrap ho rahe hain <code>flex-wrap:wrap</code> ki wajah se. No media query needed for wrapping, flex-basis handle kar raha hai.</p>
+</div>
+
+</body>
+</html>

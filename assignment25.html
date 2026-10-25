@@ -1,0 +1,172 @@
+Q25-Submit the styled multi-page project with a short note on design choices.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q25 - Styled Multi-Page Project</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', Arial, sans-serif}
+        body{background: linear-gradient(135deg, #e0e7ff 0%, #f5f0ff 100%); min-height:100vh}
+        
+        header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white; padding:30px 20px; text-align:center;
+            box-shadow:0 4px 15px rgba(0,0,0,0.2);
+        }
+        header h1{font-size:28px; margin-bottom:5px}
+        header p{opacity:0.9}
+
+        nav{
+            background:#fff; padding:12px; text-align:center; 
+            position:sticky; top:0; z-index:10;
+            box-shadow:0 2px 10px rgba(0,0,0,0.1);
+            display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
+        }
+        nav a{
+            text-decoration:none; color:#333; font-weight:600;
+            padding:8px 16px; border-radius:20px; transition:0.3s;
+            background:#f0f0f0;
+        }
+        nav a.active, nav a:hover{
+            background:#4a00e0; color:white; transform:translateY(-2px);
+        }
+
+        .container{max-width:1000px; margin:25px auto; padding:0 15px;}
+
+        /* BOX DESIGN */
+        .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin:20px 0;}
+        
+        .card{
+            background:white; border-radius:16px; padding:20px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+            border-top:5px solid #4a00e0;
+            transition:0.3s;
+        }
+        .card:hover{transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15);}
+        
+        .card h3{color:#4a00e0; margin-bottom:10px; display:flex; align-items:center; gap:8px;}
+        .card ul{margin-left:18px; line-height:1.8}
+
+        .card-purple{border-top-color:#4a00e0; background: linear-gradient(180deg, #ffffff, #f8f5ff);}
+        .card-orange{border-top-color:#ff9800; background: linear-gradient(180deg, #ffffff, #fff8e1);}
+        .card-green{border-top-color:#2e7d32; background: linear-gradient(180deg, #ffffff, #e8f5e9);}
+        .card-pink{border-top-color:#e91e63; background: linear-gradient(180deg, #ffffff, #fce4ec);}
+        .card-blue{border-top-color:#2196f3; background: linear-gradient(180deg, #ffffff, #e3f2fd);}
+
+        .big-box{
+            background:white; border-radius:16px; padding:25px; margin:20px 0;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+        }
+        .big-box h2{color:#4a00e0; border-left:6px solid #4a00e0; padding-left:12px; margin-bottom:15px;}
+
+        .tag{display:inline-block; background:#ede7ff; color:#4a00e0; padding:4px 10px; border-radius:12px; font-size:12px; font-weight:600; margin:3px;}
+
+        footer{background:#111; color:white; text-align:center; padding:18px; margin-top:30px; border-radius:16px 16px 0 0;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>✨ Q25 - Styled Multi-Page Project</h1>
+    <p>Shubhi Singh | BCA AI | Invertis University, Bareilly</p>
+</header>
+
+<nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👩‍🎓 About</a>
+    <a href="course.html">📚 BCA AI</a>
+    <a href="contact.html">📩 Contact</a>
+    <a href="assignment25.html" class="active">🎨 Q25 Design Note</a>
+</nav>
+
+<div class="container">
+
+    <div class="big-box">
+        <h2>📂 Project Overview</h2>
+        <p style="margin-bottom:12px">Ye mera <b>5-page ka styled project</b> hai. Sab pages ek hi <b>style.css</b> se connected hai.</p>
+        <div class="grid">
+            <div class="card card-purple"><h3>🏠 index.html</h3><p>Home / Welcome Page with intro</p><span class="tag">Home</span></div>
+            <div class="card card-blue"><h3>👩‍🎓 about.html</h3><p>About Me section - Q10 improved</p><span class="tag">About</span></div>
+            <div class="card card-green"><h3>📚 course.html</h3><p>College & BCA AI Course - Q13 with lists</p><span class="tag">Course</span></div>
+            <div class="card card-pink"><h3>📩 contact.html</h3><p>Contact with semantic tags - Q14</p><span class="tag">Contact</span></div>
+        </div>
+    </div>
+
+    <div class="big-box">
+        <h2>🎨 Short Note on Design Choices</h2>
+        
+        <div class="grid">
+            <div class="card card-purple">
+                <h3>🎨 1. Color Palette</h3>
+                <p><b>Main:</b> Purple Gradient (#4a00e0 → #8e2de2)</p>
+                <p>Tech + Creative look deta hai. BCA AI ke liye perfect.</p>
+                <p><b>Background:</b> Light gradient (#e0e7ff) - aankh par halka.</p>
+                <span class="tag">#4a00e0</span> <span class="tag">#8e2de2</span> <span class="tag">#f0f4ff</span>
+            </div>
+
+            <div class="card card-orange">
+                <h3>🔤 2. Typography</h3>
+                <p><b>Font:</b> Segoe UI + Arial</p>
+                <p>Clean, readable, modern. Har device pe sahi dikhta hai.</p>
+                <p><b>Headings:</b> Bold + Purple + Left border se highlight.</p>
+                <span class="tag">Readable</span> <span class="tag">Modern</span>
+            </div>
+
+            <div class="card card-green">
+                <h3>📐 3. Layout & Boxes</h3>
+                <ul>
+                    <li>Card design with rounded corners (16px)</li>
+                    <li>Hover pe upar uthta hai - interactive</li>
+                    <li>Grid system - mobile pe auto-adjust</li>
+                    <li>Top pe color border - alag alag category</li>
+                </ul>
+            </div>
+
+            <div class="card card-blue">
+                <h3>🔄 4. Consistency</h3>
+                <p>Ek hi <b>style.css</b> sab pages pe linked hai.</p>
+                <ul>
+                    <li>Same header, nav, footer</li>
+                    <li>Sticky nav - scroll pe upar rahega</li>
+                    <li>Active page yellow/purple se highlight</li>
+                </ul>
+                <span class="tag">One CSS</span> <span class="tag">All Pages</span>
+            </div>
+
+            <div class="card card-pink">
+                <h3>♿ 5. Why Semantic?</h3>
+                <ul>
+                    <li><b>SEO:</b> Google ko samajh aata hai</li>
+                    <li><b>Accessibility:</b> Screen reader ke liye best</li>
+                    <li><b>Clean Code:</b> &lt;header&gt; &lt;nav&gt; &lt;main&gt; se clear meaning</li>
+                </ul>
+                <span class="tag">SEO</span> <span class="tag">Semantic</span>
+            </div>
+
+            <div class="card card-purple">
+                <h3>✨ 6. UX Improvements</h3>
+                <ul>
+                    <li>Box shadow + rounded corners = soft look</li>
+                    <li>Hover animation - user ko feel aayega</li>
+                    <li>Tag style labels for tech stack</li>
+                    <li>Responsive grid - mobile friendly</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="big-box" style="background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center;">
+        <h2 style="color:white; border-left-color:white;">🚀 GitHub Submission</h2>
+        <p>All files: <b>github.com/shubhisinghhh18-prog/assignment-1</b></p>
+        <p style="margin-top:8px; opacity:0.9;">Enable GitHub Pages for live link</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Shubhi Singh | BCA AI | Invertis University | Q25 Multi-Page Project</p>
+</footer>
+
+</body>
+</html>

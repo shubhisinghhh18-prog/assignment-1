@@ -1,0 +1,160 @@
+Q26-Annotate a screenshot explaining the box model of one of your own elements.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q26 - Box Model Annotation</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff; padding:20px;}
+        header{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center; padding:20px; border-radius:12px;}
+        .container{max-width:1000px; margin:20px auto;}
+        .big-box{background:white; border-radius:16px; padding:25px; box-shadow:0 6px 20px rgba(0,0,0,0.1); margin-bottom:20px;}
+        h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:15px;}
+
+        /* BOX MODEL VISUAL */
+        .model-wrapper{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; justify-content:center;}
+        
+        .visual-area{
+            position:relative;
+            background: #fffbe6;
+            border: 2px dashed #ff9800;
+            padding: 30px;
+            border-radius:12px;
+        }
+        .visual-area::before{
+            content:'MARGIN - 30px (Outer Space)';
+            position:absolute; top:5px; left:10px; font-size:11px; font-weight:bold; color:#ff9800;
+        }
+        .border-layer{
+            background:#fce4ec;
+            border: 6px solid #e91e63;
+            padding: 25px;
+            border-radius:8px;
+            position:relative;
+        }
+        .border-layer::before{
+            content:'BORDER - 6px solid #e91e63';
+            position:absolute; top:-2px; left:8px; font-size:11px; font-weight:bold; color:#e91e63; background:white; padding:0 5px;
+        }
+        .padding-layer{
+            background:#e3f2fd;
+            border: 2px dashed #2196f3;
+            padding: 30px;
+            border-radius:8px;
+            position:relative;
+        }
+        .padding-layer::before{
+            content:'PADDING - 30px (Inner Space)';
+            position:absolute; top:4px; left:8px; font-size:11px; font-weight:bold; color:#2196f3;
+        }
+        .content-layer{
+            background: #4a00e0;
+            color:white;
+            width:220px; height:90px;
+            display:flex; align-items:center; justify-content:center;
+            text-align:center; border-radius:8px; font-weight:bold;
+        }
+
+        /* EXPLANATION BOXES */
+        .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:15px; margin-top:20px;}
+        .card{background:white; border-radius:12px; padding:15px; border-left:6px solid; box-shadow:0 3px 10px rgba(0,0,0,0.07);}
+        .card h4{margin-bottom:5px}
+        .c1{border-color:#4a00e0; background:#f3f0ff} .c2{border-color:#2196f3; background:#e3f2fd} .c3{border-color:#e91e63; background:#fce4ec} .c4{border-color:#ff9800; background:#fff8e1}
+
+        .code{background:#1e1e1e; color:#d4d4d4; padding:15px; border-radius:10px; overflow:auto; font-family:monospace; font-size:13px; line-height:1.6; margin-top:10px;}
+        .screenshot-box{border:2px dashed #4a00e0; padding:15px; border-radius:12px; background:#f8f5ff; text-align:center;}
+        .arrow{color:#4a00e0; font-weight:bold}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Q26 - Annotate Screenshot Explaining Box Model</h1>
+    <p>Element: .my-course-card from assignment13.html | BCA AI - Invertis University</p>
+</header>
+
+<div class="container">
+
+    <div class="big-box">
+        <h2>📦 My Own Element - Live Box Model Demo</h2>
+        <p>Ye maine apne <b>assignment13.html ka .box element</b> liya hai aur uska box model annotate kiya hai.</p>
+        
+        <div class="model-wrapper" style="margin-top:20px;">
+            <!-- Visual Annotation -->
+            <div class="visual-area">
+                <div class="border-layer">
+                    <div class="padding-layer">
+                        <div class="content-layer">
+                            CONTENT<br>220 x 90px<br>BCA AI Card
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explanation Side -->
+            <div style="flex:1; min-width:280px;">
+                <div class="grid">
+                    <div class="card c1">
+                        <h4>🔵 CONTENT</h4>
+                        <p><b>Width:</b> 220px<br><b>Height:</b> 90px<br>Actual text / image. Blue box in demo.</p>
+                    </div>
+                    <div class="card c2">
+                        <h4>🔷 PADDING</h4>
+                        <p><b>30px</b> on all sides<br>Content aur border ke beech ka space. Light blue dashed area.</p>
+                    </div>
+                    <div class="card c3">
+                        <h4>🔴 BORDER</h4>
+                        <p><b>6px solid #e91e63</b><br>Padding aur margin ke beech ki line. Pink solid.</p>
+                    </div>
+                    <div class="card c4">
+                        <h4>🟠 MARGIN</h4>
+                        <p><b>30px</b> on all sides<br>Bahar ka space, dusre elements se distance. Yellow dashed.</p>
+                    </div>
+                </div>
+
+                <div class="card c1" style="margin-top:15px;">
+                    <h4>🧮 Total Size Calculation</h4>
+                    <p>Total Width = Content (220) + Padding (30+30) + Border (6+6) + Margin (30+30) = <b>352px</b></p>
+                    <p>Total Height = Content (90) + Padding (60) + Border (12) + Margin (60) = <b>222px</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="big-box">
+        <h2>💻 CSS Code of This Element</h2>
+        <div class="code">
+.my-course-card {<br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">width</span>: 220px; <span style="color:#6a9955">/* CONTENT */</span><br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">height</span>: 90px; <span style="color:#6a9955">/* CONTENT */</span><br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">padding</span>: 30px; <span style="color:#6a9955">/* PADDING - inner space */</span><br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">border</span>: 6px solid #e91e63; <span style="color:#6a9955">/* BORDER */</span><br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">margin</span>: 30px; <span style="color:#6a9955">/* MARGIN - outer space */</span><br>
+&nbsp;&nbsp;<span style="color:#9cdcfe">background</span>: #4a00e0;<br>
+}
+        </div>
+    </div>
+
+    <div class="big-box">
+        <h2>📸 How to Take Screenshot for Submission</h2>
+        <div class="screenshot-box">
+            <p><b>Step 1:</b> Is page par right-click → <b>Inspect</b> → <b>.content-layer</b> select karo</p>
+            <p><b>Step 2:</b> Neeche Styles ke side me <b>"Box Model"</b> diagram dikhega (Chrome DevTools me)</p>
+            <p><b>Step 3:</b> Uska screenshot le lo - wahi annotation hota hai</p>
+            <p style="margin-top:10px"><span class="arrow">→ → →</span> Ya fir upar wale colorful diagram ka hi screenshot le lo, ye bhi annotated hai <span class="arrow">← ← ←</span></p>
+            <p style="margin-top:15px; font-size:12px; color:#666;">Note: Teacher ko dikhane ke liye ye visual + DevTools dono screenshot attach kar dena.</p>
+        </div>
+    </div>
+
+    <div class="big-box" style="background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white;">
+        <h2 style="color:white; border-left-color:white;">🎯 Why Box Model Important?</h2>
+        <p>Har HTML element ek box hai. Box model samajhne se layout, spacing aur design perfect banta hai. Bina box model ke website kharab dikhti hai.</p>
+        <p style="margin-top:8px"><b>Used Properties:</b> content → padding → border → margin (inside to outside)</p>
+    </div>
+
+</div>
+
+</body>
+</html>

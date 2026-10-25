@@ -1,0 +1,257 @@
+Q40- Submit the finished Grid-based project.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q40 - Finished Grid Project - Shubhi Singh - BCA AI</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        html{scroll-behavior:smooth;}
+        body{background:#f0f2ff;}
+
+        /* MAIN GRID PROJECT - NAMED AREAS */
+        .project{
+            display:grid;
+            grid-template-areas:
+                "header header header"
+                "hero hero hero"
+                "gallery gallery gallery"
+                "sidebar products products"
+                "dashboard dashboard dashboard"
+                "footer footer footer";
+            grid-template-columns: 260px 1fr 1fr;
+            gap:18px;
+            max-width:1400px;
+            margin:0 auto;
+            padding:18px;
+        }
+        .header{grid-area: header;}
+        .hero{grid-area: hero;}
+        .gallery-section{grid-area: gallery;}
+        .sidebar{grid-area: sidebar;}
+        .products-area{grid-area: products;}
+        .dashboard-section{grid-area: dashboard;}
+        .footer{grid-area: footer;}
+
+        /* HEADER */
+        .header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white; border-radius:16px; padding:0 22px; height:70px;
+            display:flex; justify-content:space-between; align-items:center;
+            box-shadow:0 6px 20px rgba(74,0,224,0.25); position:sticky; top:18px; z-index:30;
+        }
+        .logo{display:flex; gap:10px; align-items:center; font-weight:bold; font-size:19px;}
+        .logo span{background:white; color:#4a00e0; width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:10px;}
+        .nav{display:flex; gap:8px; list-style:none;}
+        .nav a{color:rgba(255,255,255,0.9); text-decoration:none; font-size:13px; padding:7px 14px; border-radius:20px; transition:0.2s;}
+        .nav a:hover, .nav a.active{background:rgba(255,255,255,0.2); color:white;}
+        .badge-final{background:#2e7d32; padding:6px 12px; border-radius:20px; font-size:11px; font-weight:bold;}
+
+        /* HERO - GRID INSIDE */
+        .hero{
+            background:white; border-radius:20px; padding:30px;
+            display:grid; grid-template-columns: 1.2fr 0.8fr; gap:30px; align-items:center;
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+        }
+        .hero-text{display:flex; flex-direction:column; gap:14px;}
+        .top-badge{background:#ede7ff; color:#4a00e0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:bold; width:fit-content;}
+        .hero-text h1{font-size:44px; line-height:1.1; color:#111;}
+        .hero-text h1 span{background: linear-gradient(90deg, #4a00e0, #8e2de2); -webkit-background-clip:text;background-clip:text; -webkit-text-fill-color:transparent;}
+        .hero-text p{color:#666; line-height:1.6; font-size:14px;}
+        .btns{display:flex; gap:10px; flex-wrap:wrap;}
+        .btn{padding:12px 22px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:13px; transition:0.3s;}
+        .btn-p{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; box-shadow:0 8px 20px rgba(74,0,224,0.3);}
+        .btn-s{background:#f5f0ff; color:#4a00e0; border:1px solid #d0c0ff;}
+        .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:15px; margin-top:10px;}
+        .stat b{font-size:20px; color:#111; display:block;} .stat span{font-size:11px; color:#888;}
+        .hero-img{position:relative; background: linear-gradient(135deg, #f5f0ff, #fff); border-radius:18px; padding:12px; box-shadow:0 10px 30px rgba(0,0,0,0.08);}
+        .hero-img img{width:100%; height:320px; object-fit:cover; border-radius:14px;}
+        .float{position:absolute; background:white; padding:8px 12px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.12); font-size:11px; font-weight:bold;}
+        .f1{top:20px; right:-10px; color:#4a00e0;} .f2{bottom:30px; left:-15px; color:#2e7d32;} .f3{bottom:10px; right:10px; background:#111; color:white;}
+
+        /* GALLERY - Q36 */
+        .gallery-section{background:white; border-radius:20px; padding:22px; box-shadow:0 8px 30px rgba(0,0,0,0.06);}
+        .section-title{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+        .section-title h2{font-size:20px; color:#111;} .section-title span{font-size:12px; color:#888;}
+        .gallery{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap:12px;
+        }
+        .photo{height:140px; border-radius:12px; overflow:hidden; position:relative; box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+        .photo img{width:100%; height:100%; object-fit:cover; transition:0.4s;}
+        .photo:hover img{transform:scale(1.1);}
+        .overlay{position:absolute; bottom:0; left:0; width:100%; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; padding:8px; font-size:11px; font-weight:bold; transform:translateY(100%); transition:0.3s;}
+        .photo:hover .overlay{transform:translateY(0);}
+
+        /* SIDEBAR + PRODUCTS - Q39 */
+        .sidebar{
+            background:white; border-radius:16px; padding:16px; box-shadow:0 6px 20px rgba(0,0,0,0.06);
+            position:sticky; top:100px; height:fit-content;
+        }
+        .sidebar h3{font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin:14px 0 8px 8px;}
+        .filter{display:flex; justify-content:space-between; padding:8px 10px; border-radius:10px; font-size:12px; cursor:pointer; transition:0.2s;}
+        .filter:hover, .filter.active{background:#ede7ff; color:#4a00e0;}
+
+        .products-area{background:transparent;}
+        .product-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap:14px;
+        }
+        .card{background:white; border-radius:16px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.06); transition:0.3s; display:flex; flex-direction:column;}
+        .card:hover{transform:translateY(-4px);}
+        .img-wrap{height:150px; overflow:hidden; position:relative;}
+        .img-wrap img{width:100%; height:100%; object-fit:cover;}
+        .badge{position:absolute; top:8px; left:8px; background:#ff3b30; color:white; padding:3px 8px; border-radius:12px; font-size:9px; font-weight:bold;}
+        .info{padding:12px; flex:1; display:flex; flex-direction:column;}
+        .info h4{font-size:13px; color:#222; margin-bottom:4px;}
+        .info p{font-size:11px; color:#666; flex:1;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-top:8px;}
+        .price{color:#4a00e0; font-weight:bold; font-size:14px;}
+
+        /* DASHBOARD - Q38 */
+        .dashboard-section{
+            background:white; border-radius:20px; padding:22px; box-shadow:0 8px 30px rgba(0,0,0,0.06);
+            display:grid;
+            grid-template-areas: "d-head d-head d-head" "d-main d-stats d-stats";
+            grid-template-columns: 1.2fr 0.8fr 0.8fr;
+            gap:16px;
+        }
+        .d-head{grid-area: d-head; display:flex; justify-content:space-between; align-items:center;}
+        .d-main{grid-area: d-main;}
+        .d-stats{grid-area: d-stats; display:grid; gap:12px;}
+        .dash-card{background: linear-gradient(135deg, #f5f0ff, #ede7ff); padding:14px; border-radius:12px; border-left:4px solid #4a00e0;}
+        .dash-card b{font-size:18px; color:#4a00e0;}
+
+        .footer{
+            background:#111; color:#aaa; border-radius:16px; padding:20px;
+            display:grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap:20px;
+        }
+        .footer h4{color:white; font-size:13px; margin-bottom:10px;}
+        .footer a{color:#888; text-decoration:none; font-size:12px; display:block; margin:5px 0;}
+
+        /* RESPONSIVE */
+        @media(max-width:1000px){
+            .project{grid-template-areas: "header" "hero" "gallery" "sidebar" "products" "dashboard" "footer"; grid-template-columns:1fr;}
+            .hero{grid-template-columns:1fr;} .dashboard-section{grid-template-areas: "d-head" "d-main" "d-stats"; grid-template-columns:1fr;}
+            .footer{grid-template-columns:1fr 1fr;}
+        }
+        @media(max-width:600px){
+            .gallery{grid-template-columns: repeat(2, 1fr);} .product-grid{grid-template-columns: repeat(2, 1fr);}
+            .hero-text h1{font-size:28px;} .stats{grid-template-columns:1fr 1fr 1fr;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="project">
+
+    <div class="header">
+        <div class="logo"><span>SS</span> Shubhi Singh - Q40 Final Grid</div>
+        <ul class="nav">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#products">Projects</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+        </ul>
+        <div class="badge-final">Q40 FINAL</div>
+    </div>
+
+    <div class="hero" id="home">
+        <div class="hero-text">
+            <div class="top-badge">🚀 Q40 - Submit Finished Grid-based Project</div>
+            <h1>Complete Grid Project <span>BCA AI</span> - Shubhi Singh</h1>
+            <p>This is my final Grid-based project combining Q36 Photo Gallery (auto-fit), Q37 Auto Reflow Product Grid (auto-fill), Q38 Named Areas Dashboard, and Q39 Header+Sidebar Layout. All using CSS Grid.</p>
+            <div class="btns">
+                <a href="https://github.com/shubhisinghhh18-prog/assignment-1.git" target="_blank" class="btn btn-p">View GitHub →</a>
+                <a href="#products" class="btn btn-s">My Assignments</a>
+            </div>
+            <div class="stats">
+                <div class="stat"><b>Q36-Q40</b><span>Grid Series</span></div>
+                <div class="stat"><b>100%</b><span>CSS Grid</span></div>
+                <div class="stat"><b>Python</b><span>Focus Image</span></div>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Python Code">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" style="position:absolute; top:18px; right:18px; width:48px; height:48px; background:white; padding:8px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);" alt="Python">
+            <div class="float f1">✅ Grid Areas</div>
+            <div class="float f2">✅ auto-fill</div>
+            <div class="float f3">🐍 Python - Q40</div>
+        </div>
+    </div>
+
+    <div class="gallery-section" id="gallery">
+        <div class="section-title"><h2>Q36 - Photo Gallery (auto-fit)</h2><span>display:grid + auto-fit + minmax</span></div>
+        <div class="gallery">
+            <div class="photo"><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Python"><div class="overlay">Python Code</div></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="Web"><div class="overlay">Q34 Hero</div></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="Code"><div class="overlay">Q35 Landing</div></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt="Dev"><div class="overlay">Q36 Grid</div></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Setup"><div class="overlay">Q37 Reflow</div></div>
+            <div class="photo"><img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400" alt="AI"><div class="overlay">Q38 Dashboard</div></div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h3>Filter Projects</h3>
+        <div class="filter active">All Grid Projects <span>6</span></div>
+        <div class="filter">Photo Gallery <span>1</span></div>
+        <div class="filter">Product Grid <span>3</span></div>
+        <div class="filter">Dashboard <span>2</span></div>
+        <h3>Grid Concepts</h3>
+        <div class="filter">✅ auto-fit</div>
+        <div class="filter">✅ auto-fill</div>
+        <div class="filter">✅ named areas</div>
+        <div class="filter">✅ minmax()</div>
+        <div class="filter">✅ gap</div>
+        <h3>Student Info</h3>
+        <div style="background:#f5f0ff; padding:10px; border-radius:10px; font-size:11px; line-height:1.5;">
+            <b>Shubhi Singh</b><br>BCA AI<br>Invertis, Bareilly<br>GitHub: shubhisinghhh18-prog
+        </div>
+    </div>
+
+    <div class="products-area" id="products">
+        <div class="product-grid">
+            <div class="card"><div class="img-wrap"><span class="badge">Q36</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="G"></div><div class="info"><h4>Q36 Gallery</h4><p>auto-fit + minmax(160px,1fr)</p><div class="price-row"><span class="price">Done</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+            <div class="card"><div class="img-wrap"><span class="badge" style="background:#4a00e0;">Q37</span><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="G"></div><div class="info"><h4>Q37 Auto Reflow</h4><p>auto-fill + minmax(200px,1fr)</p><div class="price-row"><span class="price">Done</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+            <div class="card"><div class="img-wrap"><span class="badge" style="background:#2e7d32;">Q38</span><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="G"></div><div class="info"><h4>Q38 Dashboard</h4><p>grid-template-areas named</p><div class="price-row"><span class="price">Done</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+            <div class="card"><div class="img-wrap"><span class="badge" style="background:#111;">Q39</span><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="G"></div><div class="info"><h4>Q39 Product+Header+Sidebar</h4><p>Outer areas + inner reflow</p><div class="price-row"><span class="price">Done</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+            <div class="card"><div class="img-wrap"><span class="badge" style="background:#ff9800;">Q40</span><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt="G"></div><div class="info"><h4>Q40 Final Project</h4><p>All Grid combined</p><div class="price-row"><span class="price">Final</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+            <div class="card"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400" alt="G"></div><div class="info"><h4>Python Focus</h4><p>Image replaced as requested</p><div class="price-row"><span class="price">🐍 Python</span><span style="font-size:10px; color:green;">✅</span></div></div></div>
+        </div>
+    </div>
+
+    <div class="dashboard-section" id="dashboard">
+        <div class="d-head"><h2>Q38 Concept - Dashboard with Named Areas</h2><span style="font-size:11px; background:#ede7ff; color:#4a00e0; padding:5px 10px; border-radius:20px;">grid-area: d-head, d-main, d-stats</span></div>
+        <div class="d-main">
+            <h3 style="font-size:14px; margin-bottom:10px;">Final Submission Summary</h3>
+            <div style="background:#f9f5ff; padding:12px; border-radius:10px; font-size:12px; line-height:1.7;">
+                <b>Project Structure:</b><br>
+                Outer: grid-template-areas = header, hero, gallery, sidebar+products, dashboard, footer<br>
+                Inner 1: gallery = auto-fit<br>
+                Inner 2: product-grid = auto-fill<br>
+                Inner 3: dashboard = named areas d-head/d-main/d-stats<br>
+                All responsive without JS
+            </div>
+        </div>
+        <div class="d-stats">
+            <div class="dash-card"><b>Q36-Q40</b><span style="font-size:11px; display:block; color:#666; margin-top:4px;">All Grid Assignments Completed</span></div>
+            <div class="dash-card" style="border-left-color:#2e7d32;"><b style="color:#2e7d32;">100% Grid</b><span style="font-size:11px; display:block; color:#666; margin-top:4px;">No Flexbox in this final (except inner alignment)</span></div>
+            <div class="dash-card" style="border-left-color:#111;"><b style="color:#111;">Python Image</b><span style="font-size:11px; display:block; color:#666; margin-top:4px;">Integrated as you requested in Q34</span></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><h4>Shubhi Singh</h4><p style="font-size:12px; line-height:1.6; color:#888;">BCA AI, Invertis University Bareilly. Q40 Finished Grid-based Project - All Grid concepts combined: auto-fit, auto-fill, named areas, minmax, gap.</p></div>
+        <div><h4>Q36-Q37</h4><a>Photo Gallery - auto-fit</a><a>Product Grid - auto-fill reflow</a><a>Responsive without media query</a></div>
+        <div><h4>Q38-Q39</h4><a>Dashboard - named areas</a><a>Header+Sidebar+Products</a><a>Outer + Inner Grid</a></div>
+        <div><h4>Submit</h4><a>Q40 Final - This File</a><a>GitHub: assignment-1</a><a>Built with Python Image 🐍</a></div>
+    </div>
+
+</div>
+
+</body>
+</html>

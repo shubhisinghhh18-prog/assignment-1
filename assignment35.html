@@ -1,0 +1,259 @@
+Q35- Submit the finished Flexbox landing-page section.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q35 - Finished Flexbox Landing Page - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f8f9ff; overflow-x:hidden;}
+        html{scroll-behavior:smooth;}
+
+        /* NAVBAR - FLEX */
+        .navbar{
+            display:flex; justify-content:space-between; align-items:center;
+            background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+            padding:14px 5%; position:fixed; top:0; width:100%; z-index:50;
+            box-shadow:0 2px 20px rgba(0,0,0,0.06);
+        }
+        .logo{display:flex; align-items:center; gap:10px; font-weight:bold; font-size:20px; color:#4a00e0;}
+        .logo-icon{width:36px; height:36px; background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; display:flex; align-items:center; justify-content:center; border-radius:10px;}
+        .nav-menu{display:flex; list-style:none; gap:20px; align-items:center;}
+        .nav-menu a{text-decoration:none; color:#333; font-size:14px; padding:6px 14px; border-radius:20px; transition:0.3s;}
+        .nav-menu a:hover{background:#ede7ff; color:#4a00e0;}
+        .btn-gradient{background: linear-gradient(90deg, #4a00e0, #8e2de2) !important; color:white !important; font-weight:bold;}
+        .hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer;}
+        .hamburger span{width:25px; height:3px; background:#333; border-radius:3px;}
+        #toggle{display:none;}
+        @media(max-width:900px){
+            .hamburger{display:flex;}
+            .nav-menu{position:absolute; top:100%; left:0; width:100%; flex-direction:column; background:white; max-height:0; overflow:hidden; transition:0.4s; box-shadow:0 10px 20px rgba(0,0,0,0.1);}
+            #toggle:checked ~ .nav-menu{max-height:400px; padding:15px 0;}
+            .nav-menu li{width:100%; text-align:center;}
+            .nav-menu a{display:block; padding:14px;}
+        }
+
+        /* HERO - FLEX */
+        .hero{
+            min-height:90vh; padding:100px 5% 50px;
+            display:flex; align-items:center; justify-content:center;
+            background: linear-gradient(135deg, #f5f3ff, #fff);
+        }
+        .hero-wrap{
+            max-width:1200px; width:100%;
+            display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;
+        }
+        .hero-text{flex:1 1 500px; display:flex; flex-direction:column; gap:16px;}
+        .top-badge{background:#ede7ff; color:#4a00e0; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:bold; width:fit-content;}
+        .hero-text h1{font-size:52px; line-height:1.1; color:#111;}
+        .hero-text h1 span{background: linear-gradient(90deg, #4a00e0, #8e2de2); -webkit-background-clip:text;background-clip:text; -webkit-text-fill-color:transparent;}
+        .hero-text p{color:#666; line-height:1.7; max-width:520px;}
+        .hero-btns{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+        .btn{padding:13px 26px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:14px; transition:0.3s; display:inline-block; text-align:center;}
+        .btn-p{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; box-shadow:0 8px 20px rgba(74,0,224,0.25);}
+        .btn-s{background:white; border:1.5px solid #ddd; color:#333;}
+        .btn:hover{transform:translateY(-2px);}
+        .stats{display:flex; gap:30px; margin-top:15px; flex-wrap:wrap;}
+        .stats b{font-size:22px; display:block; color:#111;}
+        .stats span{font-size:12px; color:#888;}
+
+        .hero-image{flex:1 1 420px; display:flex; justify-content:center; align-items:center; position:relative;}
+        .img-box{position:relative; width:100%; max-width:420px; background:white; border-radius:24px; padding:12px; box-shadow:0 20px 50px rgba(0,0,0,0.12); transform:rotate(-2deg); transition:0.4s;}
+        .img-box:hover{transform:rotate(0deg) translateY(-5px);}
+        .img-box img.main{width:100%; height:380px; object-fit:cover; border-radius:16px;}
+        .float{background:white; position:absolute; padding:10px 14px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.15); font-size:12px; font-weight:bold; display:flex; align-items:center; gap:6px;}
+        .f1{top:10%; left:-20px; color:#4a00e0;} .f2{bottom:20%; right:-15px; color:#2e7d32;} .f3{bottom:5%; left:-10px; background:#111; color:white;}
+
+        /* FEATURES - FLEX */
+        .section{padding:60px 5%; max-width:1200px; margin:0 auto;}
+        .section-title{text-align:center; margin-bottom:30px;}
+        .section-title h2{font-size:36px; color:#111;}
+        .section-title p{color:#666; margin-top:8px;}
+        .features{
+            display:flex; flex-wrap:wrap; gap:20px; justify-content:center;
+        }
+        .feature-card{
+            flex:1 1 300px; max-width:350px; background:white; padding:25px; border-radius:18px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.06); transition:0.3s; display:flex; flex-direction:column; gap:10px;
+        }
+        .feature-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.1);}
+        .icon{width:50px; height:50px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; background:#ede7ff; color:#4a00e0;}
+        .feature-card h3{color:#222;} .feature-card p{color:#666; font-size:13px; line-height:1.6;}
+
+        /* PRODUCTS - FLEX WRAP - Q33 */
+        .product-grid{
+            display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px;
+        }
+        .p-card{
+            flex:1 1 280px; max-width:340px; min-width:260px; background:white; border-radius:16px; overflow:hidden;
+            box-shadow:0 6px 20px rgba(0,0,0,0.06); transition:0.3s; display:flex; flex-direction:column;
+        }
+        .p-card:hover{transform:translateY(-6px);}
+        .p-img{height:200px; overflow:hidden; position:relative;}
+        .p-img img{width:100%; height:100%; object-fit:cover; transition:0.4s;}
+        .p-card:hover .p-img img{transform:scale(1.08);}
+        .badge{position:absolute; top:10px; left:10px; background:#ff3b30; color:white; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:bold;}
+        .p-info{padding:16px; flex:1; display:flex; flex-direction:column;}
+        .p-info h4{color:#222; margin-bottom:4px;}
+        .cat{color:#888; font-size:11px; text-transform:uppercase; letter-spacing:1px;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:10px;}
+        .price{color:#4a00e0; font-weight:bold; font-size:18px;}
+
+        /* LOGIN SECTION - PERFECTLY CENTRED - Q32 */
+        .login-section{
+            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            padding:60px 5%;
+            display:flex; justify-content:center; align-items:center;
+        }
+        .login-box{
+            display:flex; flex-wrap:wrap; background:white; border-radius:24px; overflow:hidden; max-width:900px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.2);
+        }
+        .login-left{flex:1 1 300px; background: linear-gradient(135deg, #4a00e0, #8e2de2); color:white; padding:35px; display:flex; flex-direction:column; justify-content:center; gap:10px;}
+        .login-right{flex:1 1 350px; padding:35px; display:flex; flex-direction:column; justify-content:center;}
+        .login-right input{width:100%; padding:12px; border:1.5px solid #ddd; border-radius:10px; margin:8px 0;}
+        .login-right button{width:100%; padding:12px; background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; border:none; border-radius:10px; font-weight:bold; margin-top:10px; cursor:pointer;}
+
+        /* FOOTER - FLEX */
+        footer{background:#111; color:#ccc; padding:40px 5%;}
+        .footer-wrap{max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; gap:30px; justify-content:space-between;}
+        .footer-col{flex:1 1 200px;}
+        .footer-col h4{color:white; margin-bottom:12px;}
+        .footer-col a{color:#aaa; text-decoration:none; display:block; margin:6px 0; font-size:13px;}
+        .copyright{text-align:center; margin-top:30px; padding-top:20px; border-top:1px solid #333; font-size:12px; color:#666;}
+
+        @media(max-width:768px){
+            .hero-text h1{font-size:34px;} .f1,.f2,.f3{display:none;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><div class="logo-icon">SS</div> Shubhi Singh</div>
+        <input type="checkbox" id="toggle">
+        <label for="toggle" class="hamburger"><span></span><span></span><span></span></label>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#products">Assignments</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#" class="btn-gradient">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO - Q34 -->
+    <section class="hero" id="home">
+        <div class="hero-wrap">
+            <div class="hero-text">
+                <div class="top-badge">🚀 Q35 - Finished Flexbox Landing Page</div>
+                <h1>Build Future with <span>BCA AI</span> & Flexbox</h1>
+                <p>Hi, I'm Shubhi Singh, Invertis University Bareilly. This is my final landing page made with 100% Flexbox - Navbar, Hero, Features, Product Listing, Login & Footer. No Grid, No Position hack.</p>
+                <div class="hero-btns">
+                    <a href="https://github.com/shubhisinghhh18-prog/assignment-1" target="_blank" class="btn btn-p">View GitHub →</a>
+                    <a href="#products" class="btn btn-s">My Work</a>
+                </div>
+                <div class="stats">
+                    <div><b>Q31-Q35</b><span>Flexbox Series</span></div>
+                    <div><b>100%</b><span>Flex Layout</span></div>
+                    <div><b>0 JS</b><span>Pure CSS</span></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="img-box">
+                    <img class="main" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Python Code">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" style="position:absolute; top:20px; right:20px; width:50px; height:50px; background:white; padding:8px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2);" alt="Python">
+                    <div class="float f1">✅ display:flex</div>
+                    <div class="float f2">✅ flex-wrap</div>
+                    <div class="float f3">🐍 Python</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES - Q31 FLEX MENU CONCEPT -->
+    <section class="section" id="features">
+        <div class="section-title">
+            <h2>Flexbox Concepts Used</h2>
+            <p>Q31 to Q35 ka complete summary - all with display:flex</p>
+        </div>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🧭</div>
+                <h3>Q31 - Navbar with Flex</h3>
+                <p>display:flex + justify-content:space-between + align-items:center for responsive navbar with hamburger.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Q32 - Centered Login</h3>
+                <p>Perfect center using justify-content:center + align-items:center + min-height:100vh. Pure flexbox.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🛍️</div>
+                <h3>Q33 - Product Grid</h3>
+                <p>flex-wrap:wrap + flex:1 1 280px + gap. Auto wrapping cards - desktop 3, mobile 1 without media query.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS - Q33 + Q30 -->
+    <section class="section" id="products" style="background:white; border-radius:24px; margin:20px auto; box-shadow:0 4px 20px rgba(0,0,0,0.04);">
+        <div class="section-title">
+            <h2>My Assignments Showcase</h2>
+            <p>Product listing style layout using flex-wrap - Q30 cards + Q33 layout</p>
+        </div>
+        <div class="product-grid">
+            <div class="p-card">
+                <div class="p-img"><span class="badge">Q29</span><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="Q29"></div>
+                <div class="p-info"><div class="cat">Hero Section</div><h4>Q29 Hero with Position</h4><p style="font-size:12px; color:#666; margin:6px 0;">Z-Index + overlay hero</p><div class="price-row"><span class="price">Done</span><span style="font-size:12px; color:#2e7d32;">✅ Completed</span></div></div>
+            </div>
+            <div class="p-card">
+                <div class="p-img"><span class="badge">Q30</span><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="Q30"></div>
+                <div class="p-info"><div class="cat">Profile Card</div><h4>Q30 Profile + Product Card</h4><p style="font-size:12px; color:#666; margin:6px 0;">Finished component</p><div class="price-row"><span class="price">Done</span><span style="font-size:12px; color:#2e7d32;">✅ Completed</span></div></div>
+            </div>
+            <div class="p-card">
+                <div class="p-img"><span class="badge" style="background:#4a00e0;">Q34</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Q34"></div>
+                <div class="p-info"><div class="cat">Navbar + Hero</div><h4>Q34 Responsive Hero</h4><p style="font-size:12px; color:#666; margin:6px 0;">Python image integrated</p><div class="price-row"><span class="price">Done</span><span style="font-size:12px; color:#2e7d32;">✅ Completed</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGIN - Q32 PERFECTLY CENTRED -->
+    <section class="login-section" id="login">
+        <div class="login-box">
+            <div class="login-left">
+                <h2>Q35 Final Submission</h2>
+                <p style="opacity:0.9; line-height:1.6; font-size:14px; margin:10px 0;">This login box is perfectly centred using flexbox - justify-content + align-items. No absolute positioning.</p>
+                <div style="background:rgba(255,255,255,0.15); padding:10px; border-radius:10px; font-size:13px; margin-top:10px;">✅ display:flex on parent<br>✅ Perfect centre<br>✅ flex-wrap responsive</div>
+            </div>
+            <div class="login-right">
+                <h3>Student Login</h3>
+                <p style="font-size:12px; color:#888; margin:6px 0 15px;">Shubhi Singh - BCA AI</p>
+                <input type="email" placeholder="shubhi@invertis.edu.in">
+                <input type="password" placeholder="Password">
+                <button onclick="alert('Q35 Submitted! Flexbox Landing Page Done ✅')">Login & Submit Q35</button>
+                <p style="font-size:11px; text-align:center; margin-top:10px; color:#888;">github.com/shubhisinghhh18-prog/assignment-1</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="footer-col">
+                <h4>Shubhi Singh</h4>
+                <p style="font-size:13px; line-height:1.6;">BCA AI, Invertis University Bareilly. Q31 to Q35 Flexbox Series - Finished Landing Page.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Flexbox Used</h4>
+                <a>display:flex</a><a>justify-content</a><a>align-items</a><a>flex-wrap:wrap</a><a>gap, flex:1 1 basis</a>
+            </div>
+            <div class="footer-col">
+                <h4>Assignments</h4>
+                <a href="#">Q31 Navbar</a><a href="#">Q32 Login Center</a><a href="#">Q33 Product Grid</a><a href="#">Q34 Hero + Navbar</a><a href="#">Q35 Final Landing</a>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Shubhi Singh | BCA AI | Q35 - Finished Flexbox Landing Page | Built with ❤️ using Flexbox</div>
+    </footer>
+
+</body>
+</html>

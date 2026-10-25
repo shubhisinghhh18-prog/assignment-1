@@ -1,0 +1,265 @@
+Q39- Build a responsive product grid with a header and sidebar using Grid.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q39 - Product Grid with Header & Sidebar Grid - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff; min-height:100vh;}
+
+        /* MAIN LAYOUT - NAMED GRID AREAS + PRODUCT GRID INSIDE */
+        .layout{
+            display:grid;
+            grid-template-areas:
+                "header header"
+                "sidebar products"
+                "footer footer";
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: 70px 1fr 60px;
+            gap:15px;
+            min-height:100vh;
+            padding:15px;
+            max-width:1400px;
+            margin:0 auto;
+        }
+        .header{grid-area: header;}
+        .sidebar{grid-area: sidebar;}
+        .products-section{grid-area: products;}
+        .footer{grid-area: footer;}
+
+        /* HEADER */
+        .header{
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color:white; border-radius:14px;
+            display:flex; justify-content:space-between; align-items:center; padding:0 20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+            position:sticky; top:15px; z-index:20;
+        }
+        .logo{display:flex; gap:10px; align-items:center; font-weight:bold; font-size:18px;}
+        .logo span{background:white; color:#4a00e0; width:36px; height:36px; display:flex; align-items:center; justify-content:center; border-radius:8px;}
+        .search{flex:1; max-width:400px; margin:0 20px; position:relative;}
+        .search input{width:100%; padding:10px 15px 10px 40px; border-radius:20px; border:none; outline:none; font-size:13px;}
+        .search::before{content:'🔍'; position:absolute; left:15px; top:50%; transform:translateY(-50%);}
+        .header-right{display:flex; gap:12px; align-items:center;}
+        .cart{background:rgba(255,255,255,0.2); padding:8px 14px; border-radius:20px; font-size:13px; font-weight:bold;}
+
+        /* SIDEBAR */
+        .sidebar{
+            background:white; border-radius:14px; padding:18px 14px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.06);
+            display:flex; flex-direction:column; gap:6px;
+            position:sticky; top:100px; height:fit-content;
+        }
+        .sidebar h3{font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin:12px 0 6px 10px;}
+        .filter-group{display:flex; flex-direction:column; gap:6px;}
+        .filter-item{
+            display:flex; justify-content:space-between; align-items:center;
+            padding:9px 12px; border-radius:10px; font-size:13px; cursor:pointer; transition:0.2s; border:1px solid transparent;
+        }
+        .filter-item:hover, .filter-item.active{background:#ede7ff; color:#4a00e0; border-color:#d0c0ff;}
+        .count{background:#eee; padding:2px 8px; border-radius:10px; font-size:11px;}
+        .filter-item.active .count{background:#4a00e0; color:white;}
+        .price-range{padding:10px; background:#f9f5ff; border-radius:10px; margin-top:5px;}
+        .price-range input{width:100%; margin:8px 0;}
+        .btn-apply{width:100%; padding:10px; background:#111; color:white; border:none; border-radius:8px; font-weight:bold; font-size:12px; margin-top:8px; cursor:pointer;}
+        .btn-apply:hover{background:#4a00e0;}
+
+        /* PRODUCTS SECTION - INSIDE GRID AREA */
+        .products-section{
+            background:transparent;
+        }
+        .top-bar{
+            background:white; border-radius:14px; padding:14px 18px;
+            display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.06); margin-bottom:15px;
+        }
+        .sort{display:flex; gap:8px; align-items:center; font-size:12px;}
+        .sort select{padding:6px 10px; border-radius:8px; border:1px solid #ddd;}
+
+        /* PRODUCT GRID - AUTO REFLOW INSIDE PRODUCTS AREA */
+        .product-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap:16px;
+        }
+        .card{
+            background:white; border-radius:16px; overflow:hidden;
+            box-shadow:0 6px 20px rgba(0,0,0,0.06); transition:0.3s;
+            display:flex; flex-direction:column;
+        }
+        .card:hover{transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,0.12);}
+        .img-wrap{height:190px; position:relative; overflow:hidden; background:#f5f5f5;}
+        .img-wrap img{width:100%; height:100%; object-fit:cover; transition:0.4s;}
+        .card:hover .img-wrap img{transform:scale(1.08);}
+        .badge{position:absolute; top:10px; left:10px; background:#ff3b30; color:white; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:bold;}
+        .badge.new{left:auto; right:10px; background:#2e7d32;}
+        .info{padding:14px; flex:1; display:flex; flex-direction:column;}
+        .cat{font-size:10px; color:#888; text-transform:uppercase; letter-spacing:1px;}
+        .info h3{font-size:14px; color:#222; margin:4px 0 6px; line-height:1.3;}
+        .rating{color:#ff9800; font-size:11px; margin-bottom:6px;}
+        .desc{font-size:11px; color:#666; line-height:1.4; flex:1; margin-bottom:10px;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-top:auto;}
+        .price{font-weight:bold; color:#4a00e0; font-size:17px;} .price s{font-size:11px; color:#999; font-weight:normal;}
+        .btn{padding:7px 14px; background:#111; color:white; border:none; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;}
+        .btn:hover{background:#4a00e0;}
+
+        .footer{
+            background:#111; color:#aaa; border-radius:14px;
+            display:flex; justify-content:space-between; align-items:center; padding:0 20px; font-size:12px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .layout{
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "products"
+                    "footer";
+                grid-template-columns:1fr;
+                grid-template-rows:70px auto auto 60px;
+            }
+            .sidebar{position:static; flex-direction:row; flex-wrap:wrap;}
+            .filter-group{flex-direction:row; flex-wrap:wrap;}
+            .search{display:none;}
+        }
+        @media(max-width:600px){
+            .product-grid{grid-template-columns: repeat(2, 1fr); gap:10px;}
+            .img-wrap{height:140px;}
+            .info{padding:10px;}
+            .desc{display:none;}
+        }
+
+        .code-note{
+            max-width:1400px; margin:0 auto; padding:0 15px 20px;
+        }
+        .code-box{background:white; padding:16px; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+        .code{background:#1e1e1e; color:#a5d6ff; padding:12px; border-radius:8px; font-family:monospace; font-size:11px; line-height:1.6;}
+    </style>
+</head>
+<body>
+
+<div class="layout">
+
+    <div class="header">
+        <div class="logo"><span>SS</span> Shubhi Store</div>
+        <div class="search"><input type="text" placeholder="Search assignments, Python, Grid..."></div>
+        <div class="header-right"><span style="font-size:12px;">Q39 Grid</span><div class="cart">🛒 Cart (9)</div></div>
+    </div>
+
+    <div class="sidebar">
+        <h3>Categories</h3>
+        <div class="filter-group">
+            <div class="filter-item active">All Products <span class="count">9</span></div>
+            <div class="filter-item">Web Dev Kits <span class="count">4</span></div>
+            <div class="filter-item">Python Projects <span class="count">3</span></div>
+            <div class="filter-item">Grid Layouts <span class="count">2</span></div>
+        </div>
+
+        <h3>Price Filter</h3>
+        <div class="price-range">
+            <label style="font-size:12px; font-weight:bold;">Max Price: ₹600</label>
+            <input type="range" min="0" max="1000" value="600">
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:#666;"><span>₹0</span><span>₹1000</span></div>
+            <button class="btn-apply">Apply Filter</button>
+        </div>
+
+        <h3>My Progress</h3>
+        <div class="filter-group">
+            <div class="filter-item">✅ Q36 Gallery</div>
+            <div class="filter-item">✅ Q37 Auto Reflow</div>
+            <div class="filter-item">✅ Q38 Dashboard</div>
+            <div class="filter-item active">🔄 Q39 Final Grid</div>
+        </div>
+    </div>
+
+    <div class="products-section">
+        <div class="top-bar">
+            <div style="font-size:13px;"><b>9 Products</b> found • Grid with Header & Sidebar</div>
+            <div class="sort">
+                <span>Sort by:</span>
+                <select><option>Latest</option><option>Price Low</option><option>Price High</option><option>Popular</option></select>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <div class="card">
+                <div class="img-wrap"><span class="badge">30% OFF</span><span class="badge new">Q37</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500" alt="Python"></div>
+                <div class="info"><div class="cat">Auto Reflow</div><h3>Q37 Auto Reflow Product Grid</h3><div class="rating">★★★★★ 4.9</div><p class="desc">repeat(auto-fill, minmax(260px, 1fr))</p><div class="price-row"><div class="price">₹149 <s>₹249</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><span class="badge" style="background:#4a00e0;">Q38</span><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500" alt="Dashboard"></div>
+                <div class="info"><div class="cat">Named Areas</div><h3>Q38 Dashboard with Grid Areas</h3><div class="rating">★★★★★ 5.0</div><p class="desc">grid-template-areas: header sidebar main footer</p><div class="price-row"><div class="price">₹199 <s>₹299</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><span class="badge">PYTHON</span><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500" alt="Python"></div>
+                <div class="info"><div class="cat">Python Special</div><h3>Python Image Integrated Hero - Q34</h3><div class="rating">★★★★★ 4.9</div><p class="desc">HTML image replaced with Python logo + code</p><div class="price-row"><div class="price">₹99 <s>₹199</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=500" alt="Landing"><span class="badge new">FINAL</span></div>
+                <div class="info"><div class="cat">Flexbox Final</div><h3>Q35 Finished Flexbox Landing Page</h3><div class="rating">★★★★☆ 4.8</div><p class="desc">Navbar + Hero + Features + Products + Login</p><div class="price-row"><div class="price">₹399 <s>₹599</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" alt="Gallery"></div>
+                <div class="info"><div class="cat">Photo Gallery</div><h3>Q36 Simple Gallery with Grid</h3><div class="rating">★★★★★ 4.9</div><p class="desc">auto-fit + minmax(250px, 1fr)</p><div class="price-row"><div class="price">₹79 <s>₹129</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500" alt="Card"></div>
+                <div class="info"><div class="cat">Component</div><h3>Q30 Profile + Product Card</h3><div class="rating">★★★★☆ 4.7</div><p class="desc">Finished card component with hover</p><div class="price-row"><div class="price">₹59 <s>₹99</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500" alt="Login"></div>
+                <div class="info"><div class="cat">Centered</div><h3>Q32 Centered Login with Flex</h3><div class="rating">★★★★★ 5.0</div><p class="desc">Perfect center - flexbox magic</p><div class="price-row"><div class="price">₹49 <s>₹89</s></div><button class="btn">Add</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><span class="badge" style="background:#111;">BUNDLE</span><img src="https://images.unsplash.com/photo-1550439062-609e1531270e?w=500" alt="Bundle"></div>
+                <div class="info"><div class="cat">All in One</div><h3>Q27 to Q39 Complete Bundle</h3><div class="rating">★★★★★ 5.0</div><p class="desc">All assignments + GitHub hosting</p><div class="price-row"><div class="price">₹599 <s>₹999</s></div><button class="btn">Buy Now</button></div></div>
+            </div>
+            <div class="card">
+                <div class="img-wrap"><span class="badge" style="background:#4a00e0;">SS</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=500" alt="Python"></div>
+                <div class="info"><div class="cat">BCA AI</div><h3>Shubhi Singh - Invertis University</h3><div class="rating">★★★★★ 5.0</div><p class="desc">Bareilly, UP • github.com/shubhisinghhh18-prog</p><div class="price-row"><div class="price">₹0 Free</div><button class="btn">View</button></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>© Q39 - Product Grid with Header & Sidebar using Grid | Shubhi Singh</div>
+        <div style="font-size:11px;">grid-template-areas + auto-fill reflow</div>
+    </div>
+
+</div>
+
+<div class="code-note">
+    <div class="code-box">
+        <h3 style="color:#4a00e0; font-size:14px; border-left:4px solid #4a00e0; padding-left:8px; margin-bottom:8px;">Q39 Combined Logic - Q37 + Q38</h3>
+        <div class="code">
+/* OUTER LAYOUT - NAMED AREAS (Q38) */
+.layout {
+  display:grid;
+  grid-template-areas: "header header" "sidebar products" "footer footer";
+  grid-template-columns: 260px 1fr;
+  gap:15px;
+}
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.products-section { grid-area: products; }
+
+/* INNER PRODUCT GRID - AUTO REFLOW (Q37) */
+.product-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap:16px;
+}
+
+/* Mobile: re-define areas to single column */
+@media(max-width:900px){
+  .layout { grid-template-areas: "header" "sidebar" "products" "footer"; grid-template-columns:1fr; }
+}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

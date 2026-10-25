@@ -1,0 +1,175 @@
+ Q16-Create a student-registration form using basic input types.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form - BCA AI - Shubhi Singh</title>
+</head>
+<body>
+
+<header>
+    <h1>Student Registration Form</h1>
+    <p><strong>Invertis University - BCA AI - 2026 Present</strong></p>
+    <p>Student: Shubhi Singh | Madnapur (SPN), UP | 12th - 78% UP Board</p>
+    <hr>
+</header>
+
+<main>
+    <section>
+        <h2>BCA AI - New Student Registration</h2>
+        
+        <form action="#" method="post" enctype="multipart/form-data">
+            
+            <!-- TEXT INPUT -->
+            <fieldset>
+                <legend>Personal Details</legend>
+                
+                <label for="fullname">Full Name:</label><br>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name Ex: Shubhi Singh" required>
+                <br><br>
+
+                <label for="fathername">Father's Name:</label><br>
+                <input type="text" id="fathername" name="fathername" placeholder="Enter father's name" required>
+                <br><br>
+
+                <label for="address">Address:</label><br>
+                <textarea id="address" name="address" rows="3" cols="40" placeholder="Enter full address Ex: Madnapur (SPN), UP" required></textarea>
+                <br><br>
+
+                <label for="photo">Upload Photo:</label><br>
+                <input type="file" id="photo" name="photo" accept="image/*">
+                <br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- EMAIL, TEL, DATE, NUMBER -->
+            <fieldset>
+                <legend>Contact & Academic Details</legend>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" placeholder="Ex: shubhi@gmail.com" required>
+                <br><br>
+
+                <label for="phone">Phone Number:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="10 digit number" pattern="[0-9]{10}" required>
+                <br><br>
+
+                <label for="dob">Date of Birth:</label><br>
+                <input type="date" id="dob" name="dob" required>
+                <br><br>
+
+                <label for="percentage">12th Percentage:</label><br>
+                <input type="number" id="percentage" name="percentage" min="0" max="100" placeholder="Ex: 78" required>
+                <br><br>
+
+                <label for="board">Board:</label><br>
+                <select id="board" name="board" required>
+                    <option value="">-- Select Board --</option>
+                    <option value="UP Board">UP Board</option>
+                    <option value="CBSE">CBSE</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="Other">Other</option>
+                </select>
+                <br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- RADIO BUTTONS -->
+            <fieldset>
+                <legend>Course Selection</legend>
+
+                <label>Select Course:</label><br>
+                <input type="radio" id="bca" name="course" value="BCA" required>
+                <label for="bca">BCA</label><br>
+
+                <input type="radio" id="bca-ai" name="course" value="BCA AI" checked>
+                <label for="bca-ai">BCA AI (Artificial Intelligence)</label><br>
+
+                <input type="radio" id="bba" name="course" value="BBA">
+                <label for="bba">BBA</label><br>
+
+                <input type="radio" id="btech" name="course" value="B.Tech">
+                <label for="btech">B.Tech</label><br>
+                <br>
+
+                <label>Gender:</label><br>
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label><br>
+            </fieldset>
+
+            <br>
+
+            <!-- CHECKBOXES -->
+            <fieldset>
+                <legend>Skills & Interests (Select multiple)</legend>
+
+                <input type="checkbox" id="html" name="skills" value="HTML">
+                <label for="html">HTML & Semantic Tags</label><br>
+
+                <input type="checkbox" id="python" name="skills" value="Python">
+                <label for="python">Python for AI</label><br>
+
+                <input type="checkbox" id="ai" name="skills" value="AI">
+                <label for="ai">Artificial Intelligence Basics</label><br>
+
+                <input type="checkbox" id="git" name="skills" value="GitHub">
+                <label for="git">Git & GitHub</label><br>
+
+                <input type="checkbox" id="ml" name="skills" value="Machine Learning">
+                <label for="ml">Machine Learning</label><br>
+            </fieldset>
+
+            <br>
+
+            <!-- PASSWORD, COLOR, RANGE -->
+            <fieldset>
+                <legend>Account Setup</legend>
+
+                <label for="username">Create Username:</label><br>
+                <input type="text" id="username" name="username" placeholder="Ex: shubhi2026" required>
+                <br><br>
+
+                <label for="password">Create Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="Min 6 characters" minlength="6" required>
+                <br><br>
+
+                <label for="color">Favorite Color:</label><br>
+                <input type="color" id="color" name="color" value="#00ff00">
+                <br><br>
+
+                <label for="satisfaction">How excited for BCA AI? (0 to 10):</label><br>
+                <input type="range" id="satisfaction" name="satisfaction" min="0" max="10" value="10">
+                <br><br>
+            </fieldset>
+
+            <br>
+
+            <!-- SUBMIT & RESET -->
+            <input type="checkbox" id="declaration" name="declaration" required>
+            <label for="declaration">I declare that all information given is true. (Place: Madnapur (SPN), UP)</label>
+            <br><br>
+
+            <input type="submit" value="Register Now">
+            <input type="reset" value="Clear Form">
+            <br><br>
+
+        </form>
+    </section>
+</main>
+
+<footer>
+    <hr>
+    <p>© 2026 Shubhi Singh | BCA AI - 1st Year | Invertis University | Madnapur (SPN), UP</p>
+    <p><strong>Form includes input types:</strong> text, email, tel, date, number, file, radio, checkbox, password, color, range, textarea, select, submit, reset</p>
+    <p>GitHub: https://github.com/shubhisinghhh18-prog/assignment-1.git</p>
+</footer>
+
+</body>
+</html> 

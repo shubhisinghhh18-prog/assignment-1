@@ -1,0 +1,80 @@
+Q24-Create a small design-token stylesheet (colours, font sizes) using CSS variables.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Design Tokens</title>
+
+    <style>
+        /* Design Tokens */
+        :root {
+            /* Colors */
+            --primary-color: #2563eb;
+            --secondary-color: #14b8a6;
+            --background-color: #f1f5f9;
+            --text-color: #1e293b;
+            --white-color: #ffffff;
+
+            /* Font Sizes */
+            --font-size-small: 14px;
+            --font-size-medium: 18px;
+            --font-size-large: 28px;
+
+            /* Spacing */
+            --spacing-small: 10px;
+            --spacing-medium: 20px;
+            --spacing-large: 30px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: var(--spacing-large);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+        }
+
+        p {
+            font-size: var(--font-size-medium);
+            line-height: 1.6;
+        }
+
+        .card {
+            background-color: var(--white-color);
+            padding: var(--spacing-medium);
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            font-size: var(--font-size-small);
+            padding: var(--spacing-small) var(--spacing-medium);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Design Tokens</h1>
+
+    <div class="card">
+        <h2>Welcome to CSS Variables</h2>
+        <p>
+            CSS variables help us reuse colors, font sizes,
+            and spacing throughout a website.
+        </p>
+        <button>Learn More</button>
+    </div>
+
+</body>
+</html>

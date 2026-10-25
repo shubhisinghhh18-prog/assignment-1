@@ -1,0 +1,119 @@
+Q27-Create three differently styled card variants using border-radius and backgrounds.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q27 - Three Card Variants</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background:#f0f2ff; padding:20px;}
+        header{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center; padding:20px; border-radius:12px;}
+        .container{max-width:1100px; margin:20px auto;}
+        .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; margin-top:25px;}
+
+        /* COMMON CARD */
+        .card{padding:25px; box-shadow:0 8px 20px rgba(0,0,0,0.12); transition:0.3s;}
+        .card:hover{transform:translateY(-8px); box-shadow:0 15px 30px rgba(0,0,0,0.2);}
+        .card h3{margin-bottom:10px; font-size:20px;}
+        .card p{line-height:1.6; opacity:0.9;}
+        .tag{display:inline-block; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:bold; margin-top:12px; margin-right:5px;}
+
+        /* VARIANT 1 - Sharp to Soft */
+        .variant1{
+            border-radius: 5px 40px 5px 40px; /* different corners */
+            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            color:white;
+            border: 3px solid white;
+        }
+        .variant1 .tag{background:rgba(255,255,255,0.2); color:white;}
+
+        /* VARIANT 2 - Fully Rounded Pill + Image Background */
+        .variant2{
+            border-radius: 30px; /* fully rounded */
+            background: radial-gradient(circle at top left, #e3f2fd, #90caf9, #1976d2);
+            color:#0d47a1;
+            border: 4px dashed #1976d2;
+        }
+        .variant2 .tag{background:#1976d2; color:white;}
+
+        /* VARIANT 3 - Circle Image Style + Glassmorphism */
+        .variant3{
+            border-radius: 50% 20% 50% 20% / 20% 50% 20% 50%; /* organic blob shape */
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ffecd2);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+            color:#880e4f;
+            border: 5px double #e91e63;
+        }
+        @keyframes gradientShift {
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+        .variant3 .tag{background:#e91e63; color:white;}
+
+        .note{background:white; border-radius:12px; padding:20px; margin-top:30px; box-shadow:0 4px 15px rgba(0,0,0,0.08);}
+        .note h2{color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px;}
+        code{background:#eee; padding:2px 6px; border-radius:4px; font-size:13px;}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Q27 - Three Differently Styled Card Variants</h1>
+    <p>Using border-radius and backgrounds | BCA AI - Invertis University</p>
+</header>
+
+<div class="container">
+
+    <div class="grid">
+        
+        <!-- CARD 1 -->
+        <div class="card variant1">
+            <h3>🎨 Variant 1 - Sharp Cut</h3>
+            <p><b>Style:</b> Linear Gradient Background + Uneven Border Radius</p>
+            <p>This card uses <code>border-radius: 5px 40px 5px 40px</code> - top-left & bottom-right small, top-right & bottom-left big. Looks like a ticket / modern UI card.</p>
+            <p style="margin-top:10px;"><b>Use case:</b> For AI Course Card, Tech Card</p>
+            <span class="tag">border-radius: 5px 40px</span>
+            <span class="tag">linear-gradient</span>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card variant2">
+            <h3>💎 Variant 2 - Soft Pill</h3>
+            <p><b>Style:</b> Radial Gradient + Dashed Border + Full Rounded</p>
+            <p>This card uses <code>border-radius: 30px</code> - fully soft corners. Background is <code>radial-gradient</code> which starts from center.</p>
+            <p style="margin-top:10px;"><b>Use case:</b> For Profile Card, Info Card</p>
+            <span class="tag">border-radius: 30px</span>
+            <span class="tag">radial-gradient</span>
+            <span class="tag">dashed border</span>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card variant3">
+            <h3>🌸 Variant 3 - Blob Shape</h3>
+            <p><b>Style:</b> Organic Blob Border Radius + Animated Gradient + Double Border</p>
+            <p>This uses advanced <code>border-radius: 50% 20% 50% 20% / 20% 50% 20% 50%</code> to create organic blob shape + animated moving gradient background.</p>
+            <p style="margin-top:10px;"><b>Use case:</b> For Creative Card, Event Card</p>
+            <span class="tag">blob radius</span>
+            <span class="tag">animated gradient</span>
+            <span class="tag">double border</span>
+        </div>
+
+    </div>
+
+    <div class="note">
+        <h2>📝 Explanation for Teacher</h2>
+        <ul style="margin-left:20px; line-height:1.9">
+            <li><b>Variant 1:</b> <code>border-radius: 5px 40px 5px 40px</code> + <code>background: linear-gradient(135deg, #4a00e0, #8e2de2)</code> - uneven corners give stylish look</li>
+            <li><b>Variant 2:</b> <code>border-radius: 30px</code> + <code>background: radial-gradient(...)</code> + <code>border: 4px dashed</code> - soft + colorful</li>
+            <li><b>Variant 3:</b> <code>border-radius: 50% 20% / 20% 50%</code> + <code>background: linear-gradient with animation</code> + <code>border: 5px double</code> - organic creative shape</li>
+        </ul>
+        <p style="margin-top:10px"><b>Requirement Fulfilled:</b> 3 different border-radius techniques + 3 different background techniques (linear, radial, animated gradient)</p>
+    </div>
+
+</div>
+
+</body>
+</html>

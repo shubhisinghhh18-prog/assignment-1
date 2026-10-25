@@ -1,0 +1,130 @@
+ Q10-Submit the finished personal-introduction HTML page.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Introduction - Shubhi Singh</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+        header h1 { margin: 0; font-size: 30px; }
+        header p { margin: 5px 0 0; opacity: 0.9; }
+        
+        .content { padding: 25px; }
+        
+        .box {
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+            border-left: 6px solid;
+        }
+        .box h2 { margin: 0 0 10px; font-size: 20px; }
+
+        .about { background: #eef2ff; border-color: #4a00e0; }
+        .about h2 { color: #4a00e0; }
+
+        .skills { background: #e0f2fe; border-color: #0284c7; }
+        .skills h2 { color: #0284c7; }
+        .skills ul { margin: 0; padding-left: 18px; }
+        .skills li { margin: 4px 0; }
+
+        .education { background: #fef9c3; border-color: #ca8a04; }
+        .education h2 { color: #a16207; }
+
+        .hobbies { background: #dcfce7; border-color: #16a34a; }
+        .hobbies h2 { color: #15803d; }
+
+        .contact { background: #fce7f3; border-color: #db2777; }
+        .contact h2 { color: #be185d; }
+
+        a { color: #4a00e0; font-weight: bold; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            background: #f3f4f6;
+            padding: 14px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Shubhi Singh</h1>
+            <p>Web Developer | B.Tech Student | Moradabad, UP</p>
+        </header>
+
+        <div class="content">
+            <!-- 1. About Me -->
+            <div class="box about">
+                <h2>👩‍💻 About Me</h2>
+                <p>Hello! I am Shubhi Singh, a passionate Computer Science student. I love creating beautiful websites and learning new technologies. I believe in continuous learning and hard work.</p>
+            </div>
+
+            <!-- 2. My Skills -->
+            <div class="box skills">
+                <h2>🚀 My Skills</h2>
+                <ul>
+                    <li><b>Frontend:</b> HTML5, CSS3, Basic JavaScript</li>
+                    <li><b>Tools:</b> Git, GitHub, VS Code</li>
+                    <li><b>Other:</b> C Programming, Communication, Teamwork</li>
+                </ul>
+            </div>
+
+            <!-- 3. Education -->
+            <div class="box education">
+                <h2>🎓 Education</h2>
+                <p><b>Bachelor of Technology (B.Tech) - Computer Science</b></p>
+                <p>invertis university bareilly | 2026-2029</p>
+                <p>Currently in 1st Year, learning Web Development and Data Structures.</p>
+            </div>
+
+            <!-- 4. Hobbies and Interests -->
+            <div class="box hobbies">
+                <h2>🎨 Hobbies and Interests</h2>
+                <ul>
+                    <li>Coding & Building Mini Projects</li>
+                    <li>Reading Tech Blogs & Novels</li>
+                    <li>Listening to Music & Traveling</li>
+                    <li>Exploring UI/UX Design</li>
+                </ul>
+            </div>
+
+            <!-- 5. Contact Me -->
+            <div class="box contact">
+                <h2>📞 Contact Me</h2>
+                <p><b>Email:</b> shubhisingh@example.com</p>
+                <p><b>Phone:</b> +91-98XXXX XXXXX</p>
+                <p><b>GitHub:</b> <a href="https://github.com/shubhisinghhh18-prog/assignment-1.git" target="_blank">github.com/shubhisinghhh18-prog</a></p>
+                <p><b>Location:</b> bareilly, Uttar Pradesh</p>
+            </div>
+        </div>
+
+        <footer>
+            © 2026 Shubhi Singh | Made with ❤️ using HTML & CSS
+        </footer>
+    </div>
+</body>
+</html>

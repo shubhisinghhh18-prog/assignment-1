@@ -1,0 +1,57 @@
+ Q19-Audit every earlier HTML file and add missing meta tags.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HTML Files Audit Report - Assignment 1 to 18 audited">
+<meta name="author" content="Suhani">
+<title>Q19 - HTML Audit Report | Suhani</title>
+<style>
+body{font-family:Arial, sans-serif; margin:20px 25px; line-height:1.5;}
+h1{font-family:'Times New Roman', serif; font-size:28px; font-weight:bold;}
+h2{font-size:18px; margin-top:20px;}
+p, li, td, th{font-size:14px;}
+table{border-collapse:collapse; width:100%; max-width:850px; margin:15px 0;}
+th, td{border:1px solid black; padding:6px 10px; text-align:left;}
+th{background:#f2f2f2; text-align:center; font-weight:bold;}
+caption{font-weight:bold; margin-bottom:5px;}
+ol{padding-left:20px;}
+</style>
+</head>
+<body>
+
+
+
+<h1>HTML Files Audit Report</h1>
+<p>All files from Assignment 1 to 18 have been audited. Missing meta tags are added below.</p>
+
+<h2>Standard Meta Tags Template (For All Files)</h2>
+<p>Har file ke &lt;head&gt; me ye 4 tags hone hi chahiye:</p>
+<ol>
+<li><b>charset:</b> &lt;meta charset="UTF-8"&gt; - Hindi / English sahi dikhe</li>
+<li><b>viewport:</b> &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; - Mobile pe sahi dikhe</li>
+<li><b>description:</b> &lt;meta name="description" content="..."&gt; - Google search ke liye</li>
+<li><b>author:</b> &lt;meta name="author" content="suhani"&gt;</li>
+</ol>
+
+<table>
+<tr><th colspan="4">Audit Result Table</th></tr>
+<tr><th>File Name</th><th>Status Before Audit</th><th>Missing Tags Found</th><th>Fixed</th></tr>
+<tr><td>assignment1.html to assignment10.html</td><td>Only charset present</td><td>viewport, description, author</td><td>Yes - Added</td></tr>
+<tr><td>assignment11.html to assignment14.html</td><td>charset + title present</td><td>viewport, description</td><td>Yes - Added</td></tr>
+<tr><td>assignment15.html to assignment18.html</td><td>charset + viewport present</td><td>description, author, keywords</td><td>Yes - Added</td></tr>
+</table>
+
+<h2>How I Fixed It?</h2>
+<ol>
+<li>Har file ko VS Code me khola.</li>
+<li>&lt;head&gt; section check kiya.</li>
+<li>Jo meta tag missing tha, usko add kiya aur file save ki.</li>
+<li>Browser me check kiya ki page mobile view me bhi sahi dikh raha hai.</li>
+</ol>
+
+<p><b>Conclusion:</b> Ab saari files me proper meta tags hai. Website ab SEO friendly aur Mobile friendly hai.</p>
+
+</body>
+</html>

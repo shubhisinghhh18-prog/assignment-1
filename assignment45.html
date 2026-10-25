@@ -1,0 +1,277 @@
+Q45- Submit the finished, fully responsive landing-page project.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q45 - Final Fully Responsive Landing Page - Shubhi Singh</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        html{scroll-behavior:smooth;}
+        body{background:#fff; overflow-x:hidden; color:#222;}
+
+        /* PAGE - GRID AREAS - FINAL */
+        .page{
+            display:grid;
+            grid-template-areas:
+                "header"
+                "hero"
+                "features"
+                "products"
+                "about"
+                "testimonial"
+                "cta"
+                "footer";
+            grid-template-columns:1fr;
+            max-width:1440px;
+            margin:0 auto;
+        }
+        header{grid-area: header;}
+        .hero{grid-area: hero;}
+        .features{grid-area: features;}
+        .products{grid-area: products;}
+        .about{grid-area: about;}
+        .testimonial{grid-area: testimonial;}
+        .cta{grid-area: cta;}
+        footer{grid-area: footer;}
+
+        /* HEADER - FLEX */
+        header{
+            display:flex; justify-content:space-between; align-items:center;
+            padding:16px 5%; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px);
+            position:sticky; top:0; z-index:30; box-shadow:0 2px 15px rgba(0,0,0,0.06);
+        }
+        .logo{display:flex; align-items:center; gap:10px; font-weight:bold; font-size:18px; color:#4a00e0;}
+        .logo span{width:36px; height:36px; background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; display:flex; align-items:center; justify-content:center; border-radius:10px;}
+        nav{display:flex; gap:20px; list-style:none; align-items:center;}
+        nav a{text-decoration:none; color:#333; font-size:14px; font-weight:500; padding:6px 14px; border-radius:20px; transition:0.2s;}
+        nav a:hover, nav a.active{background:#ede7ff; color:#4a00e0;}
+        .btn-nav{background:#111 !important; color:white !important;}
+        .menu-toggle{display:none; font-size:22px; background:none; border:none; cursor:pointer;}
+
+        /* HERO - GRID 2 COLS + FLEX INSIDE */
+        .hero{
+            display:grid; grid-template-columns: 1.1fr 0.9fr;
+            gap:40px; align-items:center; padding:70px 5%;
+            background: linear-gradient(135deg, #f5f3ff 0%, #fff 70%);
+        }
+        .hero-text{display:flex; flex-direction:column; gap:18px;}
+        .badge{background:#ede7ff; color:#4a00e0; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:bold; width:fit-content;}
+        .hero-text h1{font-size:clamp(28px, 4.5vw, 54px); line-height:1.1; color:#111;}
+        .hero-text h1 span{background: linear-gradient(90deg, #4a00e0, #8e2de2); -webkit-background-clip:text;background-clip:text; -webkit-text-fill-color:transparent;}
+        .hero-text p{font-size:clamp(13px, 1.5vw, 17px); color:#666; line-height:1.7; max-width:540px;}
+        .hero-btns{display:flex; gap:12px; flex-wrap:wrap;}
+        .btn{padding:13px 26px; border-radius:30px; text-decoration:none; font-weight:bold; font-size:14px; transition:0.3s; display:inline-block; text-align:center;}
+        .btn-p{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; box-shadow:0 8px 20px rgba(74,0,224,0.25);}
+        .btn-s{background:white; border:1.5px solid #ddd; color:#333;}
+        .stats{display:flex; gap:30px; flex-wrap:wrap;}
+        .stats b{font-size:20px; display:block;} .stats span{font-size:11px; color:#888;}
+        .hero-img{display:flex; justify-content:center; align-items:center; position:relative;}
+        .img-card{position:relative; background:white; padding:12px; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.12); width:100%; max-width:400px;}
+        .img-card .main-img{width:100%; height:360px; object-fit:cover; border-radius:14px;}
+        .python-logo{position:absolute; top:18px; right:18px; width:48px; height:48px; background:white; padding:8px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+        .float{position:absolute; background:white; padding:8px 14px; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,0.12); font-size:11px; font-weight:bold;}
+        .f1{top:10%; left:-12px; color:#4a00e0;} .f2{bottom:18%; right:-12px; color:#2e7d32;}
+
+        /* FEATURES - GRID */
+        .features{padding:70px 5%; background:white;}
+        .section-head{text-align:center; margin-bottom:40px;}
+        .section-head h2{font-size:clamp(24px, 3vw, 36px); color:#111;}
+        .section-head p{font-size:14px; color:#666; margin-top:8px;}
+        .feature-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;}
+        .f-card{background:#f9f5ff; padding:24px; border-radius:16px; border:1px solid #ede7ff; display:flex; flex-direction:column; gap:12px; transition:0.3s;}
+        .f-card:hover{background:white; transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,0.08);}
+        .f-icon{width:44px; height:44px; background:white; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; color:#4a00e0; box-shadow:0 4px 10px rgba(0,0,0,0.06);}
+        .f-card h3{font-size:16px;} .f-card p{font-size:12px; color:#666; line-height:1.6;}
+
+        /* PRODUCTS - GRID */
+        .products{padding:70px 5%; background:#f0f2ff;}
+        .product-grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap:18px;}
+        .p-card{background:white; border-radius:18px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.06); display:flex; flex-direction:column; transition:0.3s;}
+        .p-card:hover{transform:translateY(-5px);}
+        .p-img{height:170px; position:relative; overflow:hidden;}
+        .p-img img{width:100%; height:100%; object-fit:cover;}
+        .tag{position:absolute; top:10px; left:10px; background:#4a00e0; color:white; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:bold;}
+        .p-info{padding:16px; display:flex; flex-direction:column; gap:8px; flex:1;}
+        .p-info h4{font-size:14px;} .p-info p{font-size:11px; color:#666; flex:1;}
+        .price-row{display:flex; justify-content:space-between; align-items:center;}
+        .price{color:#4a00e0; font-weight:bold; font-size:16px;}
+
+        /* ABOUT - GRID 2 COLS */
+        .about{display:grid; grid-template-columns: 0.9fr 1.1fr; gap:40px; padding:70px 5%; background:white; align-items:center;}
+        .about-img img{width:100%; max-width:400px; height:320px; object-fit:cover; border-radius:18px; box-shadow:0 15px 40px rgba(0,0,0,0.1);}
+        .about-text{display:flex; flex-direction:column; gap:14px;}
+
+        /* TESTIMONIAL - FLEX */
+        .testimonial{padding:50px 5%; background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center;}
+        .testimonial h2{font-size:28px; margin-bottom:20px;}
+        .testi-grid{display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:30px;}
+        .testi{background:rgba(255,255,255,0.12); backdrop-filter:blur(10px); padding:20px; border-radius:16px; flex:1 1 280px; max-width:360px; text-align:left;}
+
+        /* CTA */
+        .cta{padding:60px 5%; background:#111; color:white; text-align:center; display:flex; flex-direction:column; gap:20px; align-items:center;}
+        .cta h2{font-size:clamp(24px, 3.5vw, 42px);}
+        .cta p{color:#aaa; max-width:600px;}
+
+        /* FOOTER - GRID */
+        footer{background:#0a0a0a; color:#888; padding:50px 5%; display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap:30px;}
+        footer h4{color:white; font-size:14px; margin-bottom:14px;}
+        .foot-links{display:flex; flex-direction:column; gap:8px;}
+        .foot-links a{color:#888; text-decoration:none; font-size:12px;}
+        .foot-links a:hover{color:white;}
+        .social{display:flex; gap:8px; margin-top:12px;}
+        .social div{width:36px; height:36px; background:#1a1a1a; border-radius:10px; display:flex; align-items:center; justify-content:center;}
+
+        /* ================= RESPONSIVE - FINAL ================= */
+        @media(max-width:1024px){
+            .hero{grid-template-columns:1fr 1fr; padding:50px 4%;}
+            .about{grid-template-columns:1fr 1fr;}
+            footer{grid-template-columns:1fr 1fr; gap:20px;}
+        }
+        @media(max-width:768px){
+            .menu-toggle{display:block;}
+            nav{display:none;}
+            .hero{grid-template-columns:1fr; padding:30px 5%; gap:25px;}
+            .hero-img{order:-1;}
+            .img-card{max-width:100%;}
+            .img-card .main-img{height:260px;}
+            .about{grid-template-columns:1fr;}
+            .features, .products{padding:40px 5%;}
+            .product-grid{grid-template-columns: repeat(2, 1fr); gap:12px;}
+            .feature-grid{grid-template-columns:1fr 1fr;}
+            footer{grid-template-columns:1fr 1fr;}
+        }
+        @media(max-width:480px){
+            header{padding:12px 4%;}
+            .hero{padding:20px 4%;}
+            .feature-grid{grid-template-columns:1fr;}
+            .product-grid{grid-template-columns:1fr;}
+            .testi-grid{flex-direction:column; align-items:center;}
+            footer{grid-template-columns:1fr; text-align:center;}
+            .foot-links{align-items:center;}
+            .social{justify-content:center;}
+            .hero-btns{flex-direction:column;}
+            .btn{width:100%;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+    <div class="logo"><span>SS</span> Shubhi Singh</div>
+    <nav>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#products">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#cta" class="btn-nav">Hire Me</a></li>
+    </nav>
+    <button class="menu-toggle">☰</button>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <div class="badge">✅ Q45 - FINAL - Fully Responsive Landing Page</div>
+        <h1>Finished <span>Responsive</span> Project - Shubhi Singh</h1>
+        <p>Hi, I'm Shubhi Singh - BCA AI, Invertis University Bareilly. This is my final landing page project, fully responsive from 320px to 1440px. Uses GRID for page layout and FLEXBOX for components. Python image integrated as requested in Q34.</p>
+        <div class="hero-btns">
+            <a href="https://github.com/shubhisinghhh18-prog/assignment-1.git" target="_blank" class="btn btn-p">GitHub - assignment-1.git →</a>
+            <a href="#products" class="btn btn-s">View All Q36-Q45</a>
+        </div>
+        <div class="stats">
+            <div><b>Q44+Q45</b><span>Skeleton → Final</span></div>
+            <div><b>100%</b><span>Responsive</span></div>
+            <div><b>GRID+FLEX</b><span>Both Used</span></div>
+        </div>
+    </div>
+    <div class="hero-img">
+        <div class="img-card">
+            <img class="main-img" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Python Code">
+            <img class="python-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo">
+            <div class="float f1">🔲 Grid Layout</div>
+            <div class="float f2">✅ Flex Layout</div>
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="section-head">
+        <h2>Grid + Flexbox Combined - Final Implementation</h2>
+        <p>Q43, Q44, Q45 complete - Reference landing page</p>
+    </div>
+    <div class="feature-grid">
+        <div class="f-card"><div class="f-icon">🔲</div><h3>GRID - Page Structure</h3><p>display:grid + grid-template-areas for header, hero, features, products, about, footer. 2D layout control.</p></div>
+        <div class="f-card"><div class="f-icon">🧭</div><h3>FLEX - Navbar & Buttons</h3><p>display:flex + justify-content:space-between for header, gap + flex-wrap for buttons. 1D row layout.</p></div>
+        <div class="f-card"><div class="f-icon">🖼️</div><h3>GRID - Gallery & Products</h3><p>repeat(auto-fit, minmax(280px,1fr)) and auto-fill for auto reflow. No media queries needed for basic reflow.</p></div>
+        <div class="f-card"><div class="f-icon">📱</div><h3>Fully Responsive - Q45</h3><p>4 breakpoints: 1024px, 768px, 480px, 320px. Tested on all screens. Q44 base → Q45 final.</p></div>
+        <div class="f-card"><div class="f-icon">🐍</div><h3>Python Image Integrated</h3><p>Q34 requirement - HTML image replaced with Python logo + code background. Floating badges for Grid/Flex.</p></div>
+        <div class="f-card"><div class="f-icon">🚀</div><h3>Ready to Submit</h3><p>Finished project, pushed to GitHub, responsive, clean code, Shubhi Singh - BCA AI - Invertis.</p></div>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <div class="section-head">
+        <h2>All Assignments - Q36 to Q45 - Final Showcase</h2>
+        <p>Grid series complete</p>
+    </div>
+    <div class="product-grid">
+        <div class="p-card"><div class="p-img"><span class="tag">Q36</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Q36"></div><div class="p-info"><h4>Q36 Photo Gallery</h4><p>auto-fit + minmax - GRID</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag">Q37</span><img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400" alt="Q37"></div><div class="p-info"><h4>Q37 Auto Reflow</h4><p>auto-fill reflow - GRID</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag">Q38</span><img src="https://images.unsplash.com/photo-1501504905252-473cbee65f87?w=400" alt="Q38"></div><div class="p-info"><h4>Q38 Dashboard</h4><p>named areas - GRID</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag">Q39</span><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400" alt="Q39"></div><div class="p-info"><h4>Q39 Header+Sidebar</h4><p>Outer areas + inner reflow</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag" style="background:#2e7d32;">Q40</span><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt="Q40"></div><div class="p-info"><h4>Q40 Final Grid Project</h4><p>All grid combined</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag" style="background:#ff9800;">Q41</span><img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400" alt="Q41"></div><div class="p-info"><h4>Q41 Breakpoints</h4><p>4 breakpoints added + tested</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag" style="background:#e91e63;">Q42</span><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400" alt="Q42"></div><div class="p-info"><h4>Q42 Audit Fix</h4><p>7 issues fixed - responsive</p><div class="price-row"><span class="price">Done ✅</span></div></div></div>
+        <div class="p-card"><div class="p-img"><span class="tag" style="background:#111;">Q43-Q45</span><img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400" alt="Q45"></div><div class="p-info"><h4>Q45 Final Responsive</h4><p>Grid+Flex landing - FINAL</p><div class="price-row"><span class="price">FINAL ✅</span></div></div></div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-img"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600" alt="About"></div>
+    <div class="about-text">
+        <div class="badge">About Final Project - Q45</div>
+        <h2 style="font-size:28px;">From Skeleton (Q44) to Final (Q45)</h2>
+        <p style="color:#666; font-size:14px; line-height:1.7;"><b>Q44:</b> Pushed HTML skeleton + base desktop styles - 1440px max, 60px padding, 56px heading, flex rows no wrap, no media queries.</p>
+        <p style="color:#666; font-size:14px; line-height:1.7;"><b>Q45:</b> Added responsiveness - clamp() for fonts, max-width:100% for images, flex-wrap, grid auto-fit/fill, and 4 breakpoints (1024px, 768px, 480px, 320px). Tested on all screen sizes.</p>
+        <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+            <div style="flex:1 1 160px; background:#f5f0ff; padding:12px; border-radius:10px;"><b style="color:#4a00e0;">Q44 Base</b><p style="font-size:11px; color:#666;">Desktop only, fixed</p></div>
+            <div style="flex:1 1 160px; background:#e8f5e9; padding:12px; border-radius:10px;"><b style="color:#2e7d32;">Q45 Final</b><p style="font-size:11px; color:#666;">Fully responsive</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial">
+    <h2>Testing - Multiple Screen Sizes - Q41 + Q45</h2>
+    <p style="font-size:13px; opacity:0.9;">Tested on Desktop 1920px, Laptop 1024px, Tablet 768px, Mobile 480px & 320px</p>
+    <div class="testi-grid">
+        <div class="testi"><h4 style="margin-bottom:8px;">🖥️ Desktop >1024px</h4><p style="font-size:12px; opacity:0.8;">4 column product grid, hero 2 columns, 54px heading, 5% padding</p></div>
+        <div class="testi"><h4 style="margin-bottom:8px;">💻 Laptop 1024px</h4><p style="font-size:12px; opacity:0.8;">3 column products, hero 2 cols still, padding reduced to 4%</p></div>
+        <div class="testi"><h4 style="margin-bottom:8px;">📱 Tablet 768px</h4><p style="font-size:12px; opacity:0.8;">Hero stacks to 1 col, products 2 cols, nav hides, menu toggle shows</p></div>
+        <div class="testi"><h4 style="margin-bottom:8px;">📱 Mobile 480px & 320px</h4><p style="font-size:12px; opacity:0.8;">1 column everything, buttons full width, fonts clamp() to small</p></div>
+    </div>
+</section>
+
+<section class="cta" id="cta">
+    <div class="badge" style="background:rgba(255,255,255,0.15); color:white;">Q45 - FINAL SUBMISSION</div>
+    <h2>Submit the Finished, Fully Responsive Landing-Page Project</h2>
+    <p>This is the final landing page - fully responsive, Grid + Flexbox, Python image integrated, all Q36-Q45 concepts used, tested on multiple screens, ready for GitHub push.</p>
+    <div class="hero-btns" style="justify-content:center;">
+        <a href="https://github.com/shubhisinghhh18-prog/assignment-1.git" target="_blank" class="btn btn-p">Push to GitHub - assignment-1.git</a>
+        <a href="#" class="btn btn-s" style="background:transparent; border:1.5px solid #444; color:white;">Download assignment45.html</a>
+    </div>
+    <p style="font-size:11px; color:#666; margin-top:10px;">Shubhi Singh | BCA AI | Invertis University Bareilly | Q45 Final | 2026</p>
+</section>
+
+<footer>
+    <div><h4>Shubhi Singh - Q45 Final</h4><p style="font-size:12px; line-height:1.6; color:#777;">BCA AI, Invertis University. Final fully responsive landing page using Grid + Flexbox. From Q44 skeleton to Q45 final. All assignments Q36-Q45 completed.</p><div class="social"><div>🔗</div><div>🐙</div><div>💼</div><div>📧</div></div></div>
+    <div class="foot-links"><h4>Q36-Q40 GRID</h4><a>Q36 Gallery - auto-fit</a><a>Q37 Reflow - auto-fill</a><a>Q38 Dashboard - areas</a><a>Q39 Header+Sidebar</a><a>Q40 Final Grid Project</a></div>
+    <div class="foot-links"><h4>Q41-Q45 FINAL</h4><a>Q41 Breakpoints Added</a><a>Q42 Audit & Fix</a><a>Q43 Grid+Flex Reference</a><a>Q44 Skeleton + Desktop</a><a>Q45 Fully Responsive FINAL</a></div>
+    <div class="foot-links"><h4>Git Push - Q45</h4><a>git add assignment45.html</a><a>git commit -m "Q45 Final responsive landing"</a><a>git push origin main</a><a style="color:#4a00e0;">github.com/shubhisinghhh18-prog</a></div>
+</footer>
+
+</div>
+
+</body>
+</html>

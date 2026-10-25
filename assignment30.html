@@ -1,0 +1,158 @@
+Q30- Submit the finished profile-card / product-card component.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q30 - Profile Card / Product Card Component</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial, sans-serif}
+        body{background: linear-gradient(135deg, #e0e7ff, #f5e0ff); min-height:100vh; padding:20px;}
+        header{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white; text-align:center; padding:18px; border-radius:12px; max-width:1100px; margin:0 auto 20px;}
+        .container{max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:25px;}
+
+        /* COMMON CARD STYLE */
+        .card{
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,0.12);
+            transition:0.3s;
+            position:relative;
+        }
+        .card:hover{transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.2);}
+
+        /* PROFILE CARD */
+        .profile-header{
+            height:120px;
+            background: linear-gradient(90deg, #4a00e0, #8e2de2);
+            position:relative;
+        }
+        .profile-avatar{
+            position:absolute;
+            bottom:-45px;
+            left:50%;
+            transform:translateX(-50%);
+            width:90px; height:90px;
+            border-radius:50%;
+            border:4px solid white;
+            object-fit:cover;
+            box-shadow:0 4px 15px rgba(0,0,0,0.2);
+        }
+        .profile-body{padding:55px 20px 20px; text-align:center;}
+        .profile-body h2{color:#222; margin-bottom:4px;}
+        .profile-body .role{color:#4a00e0; font-weight:600; font-size:14px; margin-bottom:12px;}
+        .profile-body p{color:#666; font-size:13px; line-height:1.6; margin-bottom:15px;}
+        .stats{display:flex; justify-content:space-around; margin:15px 0; padding:15px 0; border-top:1px solid #eee; border-bottom:1px solid #eee;}
+        .stats div b{display:block; color:#4a00e0; font-size:18px;}
+        .stats div span{font-size:12px; color:#777;}
+        .tags{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:15px;}
+        .tag{background:#ede7ff; color:#4a00e0; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600;}
+        .btn{
+            display:block; width:100%; padding:12px; border-radius:12px; text-align:center;
+            text-decoration:none; font-weight:bold; transition:0.3s;
+        }
+        .btn-profile:hover{background: linear-gradient(90deg, #4a00e0, #8e2de2); color:white;}
+        .btn-profile:hover{opacity:0.9;}
+
+        /* PRODUCT CARD */
+        .product-img-wrap{position:relative; height:240px; overflow:hidden;}
+        .product-img-wrap img{width:100%; height:100%; object-fit:cover; transition:0.5s;}
+        .card:hover .product-img-wrap img{transform:scale(1.08);}
+        .badge{position:absolute; top:12px; left:12px; background:#ff3b30; color:white; padding:5px 12px; border-radius:20px; font-size:11px; font-weight:bold; z-index:2;}
+        .badge.green{background:#2e7d32; left:auto; right:12px;}
+        .product-body{padding:18px;}
+        .product-body h3{color:#222; margin-bottom:6px;}
+        .category{color:#888; font-size:12px; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;}
+        .rating{color:#ff9800; font-size:13px; margin-bottom:10px;}
+        .desc{color:#666; font-size:13px; line-height:1.5; margin-bottom:14px; display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2; overflow:hidden;}
+        .price-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+        .price{font-size:22px; font-weight:bold; color:#4a00e0;}
+        .price s{font-size:13px; color:#999; margin-left:6px; font-weight:normal;}
+        .btn-product{background:#111; color:white;}
+        .btn-product:hover{background:#4a00e0;}
+        .features{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+        .features span{background:#f0f0f0; padding:4px 8px; border-radius:6px; font-size:11px;}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Q30 - Finished Profile-Card / Product-Card Component</h1>
+    <p>Shubhi Singh | BCA AI | Invertis University, Bareilly</p>
+</header>
+
+<div class="container">
+
+    <!-- PROFILE CARD - FINISHED -->
+    <div class="card">
+        <div class="profile-header"></div>
+        <img class="profile-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Profile - Shubhi Singh">
+        <div class="profile-body">
+            <h2>Shubhi Singh</h2>
+            <div class="role">BCA AI Student @ Invertis University</div>
+            <p>Passionate about Web Development & AI. Building projects with HTML, CSS, JS and Python. Based in Bareilly, UP.</p>
+            
+            <div class="stats">
+                <div><b>25+</b><span>Projects</span></div>
+                <div><b>8.5</b><span>CGPA</span></div>
+                <div><b>Q30</b><span>Final</span></div>
+            </div>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Python</span>
+                <span class="tag">AI</span>
+            </div>
+
+            <a href="https://github.com/shubhisinghhh18-prog/assignment-1.git" target="_blank" class="btn btn-profile">View GitHub Profile 🚀</a>
+            <p style="font-size:11px; color:#888; margin-top:8px;">github.com/shubhisinghhh18-prog</p>
+        </div>
+    </div>
+
+    <!-- PRODUCT CARD - FINISHED -->
+    <div class="card">
+        <div class="product-img-wrap">
+            <span class="badge">30% OFF</span>
+            <span class="badge green">IN STOCK</span>
+            <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600" alt="Product - AI Learning Kit">
+        </div>
+        <div class="product-body">
+            <div class="category">BCA AI • Web Dev Kit</div>
+            <h3>BCA AI - Web Dev Mastery Course Kit</h3>
+            <div class="rating">★★★★★ 4.9 (128 reviews)</div>
+            <p class="desc">Complete HTML, CSS, Position, Z-Index, Box Model, Cards, Hero Section - All assignments Q10 to Q30 included with source code.</p>
+            
+            <div class="features">
+                <span>📦 30 Assignments</span>
+                <span>🎨 Styled Cards</span>
+                <span>📱 Responsive</span>
+            </div>
+
+            <div class="price-row">
+                <div class="price">₹499 <s>₹799</s></div>
+                <span style="font-size:12px; color:#2e7d32; font-weight:bold;">● Free GitHub Hosting</span>
+            </div>
+
+            <a href="#" class="btn btn-product">Add to Cart - Buy Now 🛒</a>
+            <p style="font-size:11px; color:#888; margin-top:8px; text-align:center;">Built by Shubhi Singh for Q30 Submission</p>
+        </div>
+    </div>
+
+</div>
+
+<div style="max-width:1100px; margin:25px auto; background:white; border-radius:16px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+    <h2 style="color:#4a00e0; border-left:5px solid #4a00e0; padding-left:10px; margin-bottom:10px;">Component Details for Teacher</h2>
+    <ul style="margin-left:20px; line-height:1.9; font-size:14px;">
+        <li><b>Profile Card:</b> Uses position absolute for avatar overlap, gradient header, stats with flex, tags, hover lift effect</li>
+        <li><b>Product Card:</b> Uses image zoom on hover, absolute badges (OFF + STOCK), price with strikethrough, rating, features</li>
+        <li><b>Common Features:</b> border-radius:20px, box-shadow, overflow:hidden, transform translateY on hover, object-fit:cover for images</li>
+        <li><b>Fully Responsive:</b> Grid auto-fit, mobile friendly, no overflow (fixes Q28)</li>
+    </ul>
+</div>
+
+</body>
+</html>
